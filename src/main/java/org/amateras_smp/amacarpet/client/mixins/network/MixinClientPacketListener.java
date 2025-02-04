@@ -29,15 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         //#endif
 )
 public class MixinClientPacketListener {
-    @Unique
-    private final String targetMethod =
-    //#if MC < 12002
-    "handleCustomPayload";
-    //#else
-    //$$ "handleCustomPayload(Lnet/minecraft/network/protocol/common/ClientboundCustomPayloadPacket;)V";
-    //#endif
-
-    @Inject(method = targetMethod, at = @At("HEAD"), cancellable = true)
+    @Inject(method = "handleCustomPayload", at = @At("HEAD"), cancellable = true)
     private void onCustomPayload$AMA(ClientboundCustomPayloadPacket packet, CallbackInfo ci) {
         //#if MC >= 12002
         //$$ if (packet.payload() instanceof AmaCarpetPayload amaPayload) {

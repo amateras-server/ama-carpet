@@ -72,13 +72,12 @@ public class AmaCarpetPayload
     public void sendC2S() {
         ClientPacketListener networkHandler = Minecraft.getInstance().getConnection();
         if (AmaCarpet.kIsClient && networkHandler != null) {
-            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-            AmaCarpet.LOGGER.debug("making c2s packet, identifier : {}, content : {}", identifier, content);
-            write(buf);
             //#if MC >= 12002
             //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
             //#else
-            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(buf);
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+            write(buf);
+            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
             //#endif
             networkHandler.send(packet);
         } else {
@@ -87,12 +86,12 @@ public class AmaCarpetPayload
     }
 
     public void sendS2C(ServerPlayer player) {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        write(buf);
         //#if MC >= 12002
         //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
         //#else
-        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(buf);
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+        write(buf);
+        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(identifier, buf);
         //#endif
         player.connection.send(packet);
     }
@@ -102,7 +101,6 @@ public class AmaCarpetPayload
     //#endif
     public void write(FriendlyByteBuf buf)
     {
-        buf.writeResourceLocation(identifier);
         buf.writeByteArray(content);
     }
 
