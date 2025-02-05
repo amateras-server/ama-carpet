@@ -1,14 +1,14 @@
 # AmaCarpet
 
-[日本語の説明はこちら](https://github.com/pugur523/ama-carpet/blob/main/README_ja.md)
+[日本語の説明はこちら](https://github.com/amateras-server/ama-carpet/blob/main/README_ja.md)
 
-[![Dev Builds](https://github.com/pugur523/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/pugur523/ama-carpet/actions/workflows/gradle.yml)
-[![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
-[![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
+[![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
+[![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
+[![Issues](https://img.shields.io/github/issues/amateras-server/ama-carpet.svg)](https://github.com/amateras-server/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
 **AmaCarpet** is an extension of the Carpet Mod specifically designed for **Amateras SMP**.
-Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or [contribute to this mod](https://github.com/pugur523/ama-carpet/pulls).
+Feel free to [report any issues](https://github.com/amateras-server/ama-carpet/issues) or [contribute to this mod](https://github.com/amateras-server/ama-carpet/pulls).
 
 
 ## Rules

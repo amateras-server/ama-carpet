@@ -2,12 +2,12 @@
 
 [English readme here](README.md)
 
-[![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
-[![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
+[![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
+[![Issues](https://img.shields.io/github/issues/amateras-server/ama-carpet.svg)](https://github.com/amateras-server/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
 **AmaCarpet**は**Amateras SMP**のために作られたCarpet Mod Extensionです。<br>
-バグや問題等発見された方は[issue](https://github.com/pugur523/ama-carpet/issues)へお願いします。また、機能改善や新機能等あれば[pull request](https://github.com/pugur523/ama-carpet/pulls)まで。
+バグや問題等発見された方は[issue](https://github.com/amateras-server/ama-carpet/issues)へお願いします。また、機能改善や新機能等あれば[pull request](https://github.com/amateras-server/ama-carpet/pulls)まで。
 
 
 ## Rules
