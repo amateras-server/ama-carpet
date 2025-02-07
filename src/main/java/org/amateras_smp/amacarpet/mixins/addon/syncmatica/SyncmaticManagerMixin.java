@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
@@ -21,10 +21,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(value = SyncmaticManager.class, remap = false)
-public class MixinSyncmaticManager {
+public class SyncmaticManagerMixin {
     @Inject(method = "addPlacement", at = @At("HEAD"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.kIsClient) return;
+        if (!AmaCarpetSettings.notifySyncmatica || AmaCarpet.kIsClient) return;
         Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
                 Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(

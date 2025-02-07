@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.mixins.network;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
         ServerGamePacketListenerImpl.class
         //#endif
 )
-public abstract class MixinServerGamePacketListenerImpl {
+public abstract class ServerGamePacketListenerImplMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"), cancellable = true)
     private void onCustomPayload$AMA(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         //#if 12002 <= MC && MC < 12005

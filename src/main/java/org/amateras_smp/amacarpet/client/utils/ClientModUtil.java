@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.client.utils;
@@ -10,12 +10,53 @@ import net.fabricmc.loader.api.FabricLoader;
 import org.amateras_smp.amacarpet.AmaCarpet;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ClientModUtil {
-    public static final ImmutableList<String> tweakerooFeaturesWatchList = ImmutableList.of(
+
+    // used for almost all of malilib config boolean
+    public static final ImmutableList<Restriction> genericRestrictions = ImmutableList.of(
+            new Restriction(AmaCarpet.ModIds.amatweaks, "org.amateras_smp.amatweaks.config.Configs$Generic", ImmutableList.of(
+                    "auto_eat_put_back_food",
+                    "auto_glide_put_back_rocket"
+            )),
+            new Restriction(AmaCarpet.ModIds.litematica, "fi.dy.masa.litematica.config.Configs$Generic", ImmutableList.of(
+                    "easy_place_mode",
+                    "placement_restriction"
+            )),
+            new Restriction(AmaCarpet.ModIds.masaadditions, "com.red.masaadditions.tweakeroo_additions.config.ConfigsExtended$Disable", "DISABLE_", ImmutableList.of(
+                    "honey_block_slowdown",
+                    "honey_block_jumping",
+                    "slime_block_bouncing"
+            )),
+            new Restriction(AmaCarpet.ModIds.tweakermore, "me.fallenbreath.tweakermore.config.TweakerMoreConfigs", ImmutableList.of(
+                    "auto_pick_schematic_block",
+                    "disable_darkness_effect",
+                    "disable_honey_block_effect",
+                    "disable_slime_block_bouncing",
+                    "fake_night_vision",
+                    "schematic_block_placement_restriction",
+                    "schematic_pro_place"
+            )),
+            new Restriction(AmaCarpet.ModIds.tweakeroo, "fi.dy.masa.tweakeroo.config.Configs$Disable", "DISABLE_", ImmutableList.of(
+                    "slime_block_slowdown"
+            ))
+    );
+
+    public static final Restriction amatweaksFeatureToggleRestriction = new Restriction(AmaCarpet.ModIds.amatweaks, "org.amateras_smp.amatweaks.config.FeatureToggle", "TWEAK_", ImmutableList.of(
+            "auto_eat",
+            "auto_firework_glide",
+            "interaction_history",
+            "prevent_breaking_adjacent_portal",
+            "prevent_placement_on_portal_sides",
+            "safe_step_protection",
+            "selective_block_rendering",
+            "selective_entity_rendering"
+    ));
+
+    public static final Restriction tweakerooFeatureToggleRestriction = new Restriction(AmaCarpet.ModIds.tweakeroo, "fi.dy.masa.tweakeroo.config.FeatureToggle", "TWEAK_", ImmutableList.of(
             // contains tweakfork
             "accurate_block_placement",
             "block_reach_override",
@@ -27,32 +68,8 @@ public class ClientModUtil {
             "gamma_override",
             "no_sneak_slowdown",
             "scaffold_place"
-    );
+    ));
 
-    public static final ImmutableList<String> tweakerooYeetsWatchList = ImmutableList.of(
-            "slime_block_slowdown"
-    );
-
-    public static final ImmutableList<String> masaAdditionsYeetsWatchList = ImmutableList.of(
-            "honey_block_slowdown",
-            "honey_block_jumping",
-            "slime_block_bouncing"
-    );
-
-    public static final ImmutableList<String> tweakermoreWatchList = ImmutableList.of(
-            "auto_pick_schematic_block",
-            "disable_darkness_effect",
-            "disable_honey_block_effect",
-            "disable_slime_block_bouncing",
-            "fake_night_vision",
-            "schematic_block_placement_restriction",
-            "schematic_pro_place"
-    );
-
-    public static final ImmutableList<String> litematicaWatchList = ImmutableList.of(
-            "easy_place_mode",
-            "placement_restriction"
-    );
 
     private static boolean checkMalilibConfigBoolean(String className, String feature) {
         try {
@@ -70,7 +87,7 @@ public class ClientModUtil {
         return false;
     }
 
-    private static void addFeatures(Map<String, Boolean> map, String modId, List<String> features, String className, String featurePrefix) {
+    private static void addFeatures(Map<String, Boolean> map, String modId, String className, String featurePrefix, List<String> features) {
         boolean isModLoaded = FabricLoader.getInstance().isModLoaded(modId);
         for (String feature : features) {
             boolean value = false;
@@ -83,15 +100,19 @@ public class ClientModUtil {
         }
     }
 
-    public static HashMap<String, Boolean> createConfigDataMap() {
+    public static HashMap<String, Boolean> createClientConfigsDataMap() {
         HashMap<String, Boolean> map = new HashMap<>();
-
-        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooFeaturesWatchList, "fi.dy.masa.tweakeroo.config.FeatureToggle", "TWEAK_");
-        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooYeetsWatchList, "fi.dy.masa.tweakeroo.config.Configs$Disable", "DISABLE_");
-        addFeatures(map, AmaCarpet.ModIds.masaadditions, masaAdditionsYeetsWatchList, "com.red.masaadditions.tweakeroo_additions.config.ConfigsExtended$Disable", "DISABLE_");
-        addFeatures(map, AmaCarpet.ModIds.tweakermore, tweakermoreWatchList, "me.fallenbreath.tweakermore.config.TweakerMoreConfigs", "");
-        addFeatures(map, AmaCarpet.ModIds.litematica, litematicaWatchList, "fi.dy.masa.litematica.config.Configs$Generic", "");
-
+        for (Restriction restriction : genericRestrictions) {
+            addFeatures(map, restriction.modId, restriction.className, restriction.featurePrefix, restriction.watchList);
+        }
+        addFeatures(map, amatweaksFeatureToggleRestriction.modId, amatweaksFeatureToggleRestriction.className, amatweaksFeatureToggleRestriction.featurePrefix, amatweaksFeatureToggleRestriction.watchList);
+        addFeatures(map, tweakerooFeatureToggleRestriction.modId, tweakerooFeatureToggleRestriction.className, tweakerooFeatureToggleRestriction.featurePrefix, tweakerooFeatureToggleRestriction.watchList);
         return map;
+    }
+
+    public record Restriction(String modId, String className, String featurePrefix, ImmutableList<String> watchList) {
+        Restriction(String modId, String className, ImmutableList<String> watchList) {
+            this(modId, className, "", watchList);
+        }
     }
 }

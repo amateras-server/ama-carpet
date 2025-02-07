@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
@@ -29,14 +29,14 @@ import net.minecraft.resources.ResourceLocation;
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(ServerCommunicationManager.class)
-public abstract class MixinServerCommunicationManager extends CommunicationManager {
+public abstract class ServerCommunicationManagerMixin extends CommunicationManager {
     @Inject(method = "handle", at = @At("HEAD"))
     //#if MC <= 12004
     private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
+        if (!AmaCarpetSettings.notifySyncmatica || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
     //#else
     //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-    //$$     if (!AmaCarpetSettings.notifySchematicShare || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
+    //$$     if (!AmaCarpetSettings.notifySyncmatica || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
     //#endif
         FriendlyByteBuf copiedBuf = new FriendlyByteBuf(packetBuf.copy());
         UUID placementId = copiedBuf.readUUID();

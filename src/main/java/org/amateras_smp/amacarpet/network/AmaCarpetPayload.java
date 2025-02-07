@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.network;
@@ -33,15 +33,15 @@ public class AmaCarpetPayload
         //$$ implements CustomPacketPayload
         //#endif
 {
-    public final byte[] content;
+    public byte[] content;
 
     public AmaCarpetPayload(byte[] content) {
         this.content = content;
     }
 
     //#if MC >= 12002
-    //$$ public AmaCarpetPayload(FriendlyByteBuf friendlyByteBuf) {
-    //$$     this.content = friendlyByteBuf.readByteArray();
+    //$$ public AmaCarpetPayload(FriendlyByteBuf input) {
+    //$$     this.content = input.readByteArray();
     //$$ }
     //#endif
 
@@ -78,7 +78,7 @@ public class AmaCarpetPayload
             //#if MC >= 12002
             //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
             //#else
-            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(buf);
+            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
             //#endif
             networkHandler.send(packet);
         } else {
@@ -92,7 +92,7 @@ public class AmaCarpetPayload
         //#if MC >= 12002
         //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
         //#else
-        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(buf);
+        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(identifier, buf);
         //#endif
         player.connection.send(packet);
     }
@@ -100,10 +100,9 @@ public class AmaCarpetPayload
     //#if 12002 <= MC && MC <= 12004
     //$$ @Override
     //#endif
-    public void write(FriendlyByteBuf buf)
+    public void write(FriendlyByteBuf output)
     {
-        buf.writeResourceLocation(identifier);
-        buf.writeByteArray(content);
+        output.writeByteArray(content);
     }
 
     //#if 12002 <= MC && MC <= 12004

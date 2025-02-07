@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.commands.restriction;
@@ -68,10 +68,11 @@ public class RestrictionCommand extends AbstractCommand {
 
     private static void initializeFeatureSuggestions() {
         FEATURE_SUGGESTIONS.clear();
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooFeaturesWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooYeetsWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakermoreWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.litematicaWatchList);
+        for (ClientModUtil.Restriction r : ClientModUtil.genericRestrictions) {
+            FEATURE_SUGGESTIONS.addAll(r.watchList());
+        }
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.amatweaksFeatureToggleRestriction.watchList());
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooFeatureToggleRestriction.watchList());
     }
 
     private static String isRestricted(boolean b) {

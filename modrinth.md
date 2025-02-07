@@ -1,14 +1,15 @@
+# ![Logo](https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png)
 # AmaCarpet
 
-[日本語の説明はこちら](https://github.com/amateras-server/ama-carpet/blob/main/README_ja.md)
+[日本語の説明はこちら](README_ja.md)
 
 [![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/amateras-server/ama-carpet.svg)](https://github.com/amateras-server/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
+[![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/YFJff2Bkx8)
 
-**AmaCarpet** is an extension of the Carpet Mod specifically designed for **Amateras SMP**.
-Feel free to [report any issues](https://github.com/amateras-server/ama-carpet/issues) or [contribute to this mod](https://github.com/amateras-server/ama-carpet/pulls).
+A carpet addition made for **Amateras SMP**.
 
 
 ## Rules
@@ -17,6 +18,8 @@ Feel free to [report any issues](https://github.com/amateras-server/ama-carpet/i
 ### cheatRestriction
 
 > Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
+
+> **💡 NOTE:**
 > Only works in server side.
 
 - Type: `boolean`
@@ -99,8 +102,22 @@ Feel free to [report any issues](https://github.com/amateras-server/ama-carpet/i
 - Categories: `AMA`, `SURVIVAL`
 <br><br>
 
-### notifySchematicShare
-> Sends notifications to player's chat when a schematic is shared or unshared using [Syncmatica](https://modrinth.com/mod/syncmatica) or [Kyoyu](https://modrinth.com/mod/kyoyu).
+### notifyKyoyu
+> Sends notifications to player's chat when a schematic is shared or unshared using [kyoyu](https://modrinth.com/plugin/kyoyu).
+
+> **💡 NOTE:** 
+> Only works in server side.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`, `SURVIVAL`
+<br><br>
+
+### notifySyncmatica
+> Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
+
+> **💡 NOTE:**
 > Only works in server side.
 
 - Type: `boolean`
@@ -134,7 +151,7 @@ Feel free to [report any issues](https://github.com/amateras-server/ama-carpet/i
 
 ### requireAmaCarpetClientTimeoutSeconds
 
-> Determines timeout duration for [requireAmaCarpetClient](#requireamacarpetclient) to check if the client has ama-carpet on login phase.
+> Determines timeout duration for [requireAmaCarpetClient](#requireamacarpetclient) to check if the client has ama-carpet on login phase within the range 1 to 180 seconds.
 
 - Type: `int`
 - Default value: `5`

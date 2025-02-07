@@ -46,6 +46,7 @@ dependencies {
     modImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}"
     modImplementation "maven.modrinth:tweakermore:${project.tweakermore_version}"
     modImplementation "maven.modrinth:litematica:${project.litematica_version}"
+    modImplementation "maven.modrinth:amatweaks:${project.amatweaks_version}"
 
     modImplementation(syncmatica_dependency) {
         exclude group: 'com.github.sakura-ryoko', module: 'malilib'

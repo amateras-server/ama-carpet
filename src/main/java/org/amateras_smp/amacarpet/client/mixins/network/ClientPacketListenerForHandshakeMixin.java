@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.client.mixins.network;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPacketListener.class)
-public class MixinClientPacketListenerForHandshake {
+public class ClientPacketListenerForHandshakeMixin {
     @Inject(method = "handleLogin", at = @At("RETURN"))
     private void sendHandshakePacket(ClientboundLoginPacket clientboundLoginPacket, CallbackInfo ci) {
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());

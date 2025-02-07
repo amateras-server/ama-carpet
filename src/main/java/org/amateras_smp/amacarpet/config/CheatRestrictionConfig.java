@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.config;
@@ -28,9 +28,6 @@ public class CheatRestrictionConfig {
         setDefaultProperties();
         Path configFilePath = FileUtil.getServerConfigDir().resolve(configFileName);
         try {
-            if (Files.notExists(configFilePath)) {
-                createDefaultConfig(configFilePath);
-            }
             loadProperties(configFilePath);
         } catch (IOException e) {
             AmaCarpet.LOGGER.error("Unable to load configuration file: " + e.getMessage(), e);
@@ -43,29 +40,24 @@ public class CheatRestrictionConfig {
     }
 
     private void loadProperties(Path configFilePath) throws IOException {
-        try (InputStream input = Files.newInputStream(configFilePath)) {
-            properties.load(input);
+        if (Files.exists(configFilePath)) {
+            try (InputStream input = Files.newInputStream(configFilePath)) {
+                properties.load(input);
+            }
         }
-    }
-
-    private void createDefaultConfig(Path configFilePath) {
         saveConfig(configFilePath);
     }
 
     private void setDefaultProperties() {
-        for (String feature : ClientModUtil.tweakerooFeaturesWatchList) {
+        for (ClientModUtil.Restriction r : ClientModUtil.genericRestrictions) {
+            for (String feature : r.watchList()) {
+                properties.setProperty(feature, "false");
+            }
+        }
+        for (String feature : ClientModUtil.amatweaksFeatureToggleRestriction.watchList()) {
             properties.setProperty(feature, "false");
         }
-        for (String yeet : ClientModUtil.tweakerooYeetsWatchList) {
-            properties.setProperty(yeet, "false");
-        }
-        for (String yeet : ClientModUtil.masaAdditionsYeetsWatchList) {
-            properties.setProperty(yeet, "false");
-        }
-        for (String feature : ClientModUtil.tweakermoreWatchList) {
-            properties.setProperty(feature, "false");
-        }
-        for (String feature : ClientModUtil.litematicaWatchList) {
+        for (String feature : ClientModUtil.tweakerooFeatureToggleRestriction.watchList()) {
             properties.setProperty(feature, "false");
         }
     }

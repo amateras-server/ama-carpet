@@ -1,5 +1,5 @@
-// Copyright (c) 2025 The Ama-Carpet Authors
-// This file is part of the Ama-Carpet project and is licensed under the terms of
+// Copyright (c) 2025 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.mixins.ticket;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.IOException;
 
 @Mixin(MinecraftServer.class)
-public class MixinMinecraftServer {
+public class MinecraftServerMixin {
 
     @Inject(method = "prepareLevels", at = @At("HEAD"))
     private void onPrepareLevels(ChunkProgressListener chunkProgressListener, CallbackInfo ci) throws IOException {

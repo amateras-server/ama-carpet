@@ -16,8 +16,9 @@
   "carpet.rule.disableSoundEngine.desc": "Disables all server-side sound engine processes",
   "carpet.rule.endGatewayChunkLoad.desc": "Allows entities traveling through end gateway portals to load a 3x3 chunk area, similar to nether portals.",
   "carpet.rule.endPortalChunkLoad.desc": "Allows entities traveling through end portals to load a 3x3 chunk area, similar to nether portals.",
-  "carpet.rule.notifySchematicShare.desc": "Sends notifications to player's chat when a schematic is shared or unshared using syncmatica or kyoyu.",
+  "carpet.rule.notifyKyoyu.desc": "Sends notifications to player's chat when a schematic is shared or unshared using kyoyu.",
+  "carpet.rule.notifySyncmatica.desc": "Sends notifications to player's chat when a schematic is shared or unshared using syncmatica.",
   "carpet.rule.reloadPortalTicket.desc": "Reloads all Nether portal chunk-loading tickets during server startup. This ensures that chunk loaders remain functional after server restarts.",
   "carpet.rule.requireAmaCarpetClient.desc": "Prevents clients without AmaCarpet installed from logging in. The timeout duration can be configured with requireAmaCarpetClientTimeoutSeconds",
-  "carpet.rule.requireAmaCarpetClientTimeoutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet."
+  "carpet.rule.requireAmaCarpetClientTimeoutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet within the range 1 to 180 seconds."
 }

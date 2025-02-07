@@ -1,13 +1,18 @@
-# ![Logo](src/main/resources/assets/ama-carpet/icon_32.png) AmaCarpet
+<a align=center>
+  <img src=https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png width=256>
+</a>
+
+# AmaCarpet
 
 [English readme here](README.md)
 
+[![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/amateras-server/ama-carpet.svg)](https://github.com/amateras-server/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
+[![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/YFJff2Bkx8)
 
-**AmaCarpet**は**Amateras SMP**のために作られたCarpet Mod Extensionです。<br>
-バグや問題等発見された方は[issue](https://github.com/amateras-server/ama-carpet/issues)へお願いします。また、機能改善や新機能等あれば[pull request](https://github.com/amateras-server/ama-carpet/pulls)まで。
+**Amateras SMP**のために作られたcarpet addition。<br>
 
 
 ## Rules
@@ -99,9 +104,22 @@
 - Categories: `AMA`, `SURVIVAL`
 <br><br>
 
-### notifySchematicShare
+### notifyKyoyu
 
-> schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)や[kyoyu](https://modrinth.com/mod/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
+> schematic(.litematicファイル)が[kyoyu](https://modrinth.com/plugin/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
+
+> [!NOTE]
+> サーバー側でのみ機能する。
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`, `SURVIVAL`
+<br><br>
+
+### notifySyncmatica
+
+> schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 
 > [!NOTE]
 > サーバー側でのみ機能する。
@@ -136,7 +154,7 @@
 
 ### requireAmaCarpetClientTimeoutSeconds
 
-> [requireAmaCarpetClient](#requireAmaCarpetClient)によるクライアントがama-carpetを導入しているかどうかのチェックがタイムアウトするまでの時間を設定する。
+> [requireAmaCarpetClient](#requireAmaCarpetClient)によるクライアントがama-carpetを導入しているかどうかのチェックがタイムアウトするまでの時間を1秒以上180秒以下で設定する。
 
 - Type: `int`
 - Default value: `5`

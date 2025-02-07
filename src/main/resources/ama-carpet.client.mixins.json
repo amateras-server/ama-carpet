@@ -3,10 +3,12 @@
   "package": "org.amateras_smp.amacarpet.client.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
-    "addon.malilib.MixinConfigBoolean",
-    "addon.tweakeroo.MixinFeatureToggle",
-    "network.MixinClientPacketListener",
-    "network.MixinClientPacketListenerForHandshake"
+    "addon.amatweaks.FeatureToggleMixin",
+    "addon.malilib.ConfigBooleanMixin",
+    "addon.tweakeroo.FeatureToggleMixin",
+    "network.ClientboundCustomPayloadPacketMixin",
+    "network.ClientPacketListenerForHandshakeMixin",
+    "network.ClientPacketListenerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

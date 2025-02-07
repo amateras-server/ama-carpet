@@ -192,6 +192,7 @@ jobs:
             malilib(optional)
             syncmatica(optional)
             tweakeroo(optional)
+            amatweaks(optional)
 
           github-changelog: ${{ format('{0}{1}', github.event.release.body, steps.get_release.outputs.body) }}
           modrinth-changelog: ${{ steps.changelog.outputs.result }}
