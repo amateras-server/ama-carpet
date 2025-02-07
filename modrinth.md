@@ -1,4 +1,7 @@
-# ![Logo](https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png)
+<a align=center>
+  <img src=https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png width=256>
+</a>
+
 # AmaCarpet
 
 [日本語の説明はこちら](README_ja.md)
