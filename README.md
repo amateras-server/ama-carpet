@@ -2,7 +2,7 @@
 
 # AmaCarpet
 
-[日本語の説明はこちら](README_ja.md)
+[日本語の説明はこちら](https://github.com/amateras-server/ama-carpet/blob/main/README_ja.md)
 
 [![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
