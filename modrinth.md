@@ -10,8 +10,17 @@
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 [![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/YFJff2Bkx8)
 
-A carpet addition made for **Amateras SMP**.
+A carpet addition made for **Amateras SMP**.<br>
+Currently supports **1.19~1.21.4**.
 
+## Dependencies
+- [carpet](https://modrinth.com/mod/carpet) (required)
+- [fabric-api](https://modrinth.com/mod/fabric-api) (required)
+- [amatweaks](https://modrinth.com/mod/amatweaks) (optional)
+- [kyoyu](https://modrinth.com/mod/kyoyu) (optional)
+- [malilib](https://modrinth.com/mod/malilib) (optional)
+- [syncmatica](https://modrinth.com/mod/syncmatica) (optional)
+- [tweakeroo](https://modrinth.com/mod/tweakeroo) (optional)
 
 ## Rules
 
@@ -20,14 +29,13 @@ A carpet addition made for **Amateras SMP**.
 
 > Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
 
-> **💡 NOTE:**
+<strong><font color=60ddeb>**📝 NOTE:**</font></strong>
 > Only works in server side.
 
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### commandListRestriction
 
@@ -38,8 +46,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `String`
 - Default value: `true`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `AMA`, `COMMAND`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
 ### commandRestriction
 
@@ -48,8 +55,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `String`
 - Default value: `ops`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `AMA`, `COMMAND`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
 ### debugModeAmaCarpet
 
@@ -58,8 +64,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
 
 ### disableAnimalSpawnOnChunkGen
 
@@ -68,8 +73,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`<br>
 
 ### disableSoundEngine
 
@@ -78,8 +82,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`<br>
 
 ### endGatewayChunkLoad (MC < 1.21)
 
@@ -89,8 +92,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### endPortalChunkLoad (MC < 1.21)
 
@@ -100,32 +102,23 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### notifyKyoyu
 > Sends notifications to player's chat when a schematic is shared or unshared using [kyoyu](https://modrinth.com/plugin/kyoyu).
 
-> **💡 NOTE:** 
-> Only works in server side.
-
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### notifySyncmatica
 > Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
 
-> **💡 NOTE:**
-> Only works in server side.
-
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### reloadPortalTicket
 
@@ -136,8 +129,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### requireAmaCarpetClient
 
@@ -147,8 +139,7 @@ A carpet addition made for **Amateras SMP**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
 
 ### requireAmaCarpetClientTimeoutSeconds
 
@@ -157,5 +148,4 @@ A carpet addition made for **Amateras SMP**.
 - Type: `int`
 - Default value: `5`
 - Suggested options: `3`, `5`, `10`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
