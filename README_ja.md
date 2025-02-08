@@ -2,7 +2,7 @@
 
 # AmaCarpet
 
-[English readme here](README.md)
+[English README](README.md)
 
 [![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
@@ -11,6 +11,16 @@
 [![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/YFJff2Bkx8)
 
 **Amateras SMP**のために作られたcarpet addition。<br>
+現在は1.19から1.21.4に対応。
+
+## Dependencies
+- [carpet](https://modrinth.com/mod/carpet) (必須)
+- [fabric-api](https://modrinth.com/mod/fabric-api) (必須)
+- [amatweaks](https://modrinth.com/mod/amatweaks) (任意)
+- [kyoyu](https://modrinth.com/mod/kyoyu) (任意)
+- [malilib](https://modrinth.com/mod/malilib) (任意)
+- [syncmatica](https://modrinth.com/mod/syncmatica) (任意)
+- [tweakeroo](https://modrinth.com/mod/tweakeroo) (任意)
 
 
 ## Rules
@@ -26,8 +36,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### commandListRestriction
 
@@ -37,8 +46,7 @@
 - Type: `String`
 - Default value: `true`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `AMA`, `COMMAND`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
 ### commandRestriction
 
@@ -47,8 +55,7 @@
 - Type: `String`
 - Default value: `ops`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `AMA`, `COMMAND`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
 ### debugModeAmaCarpet
 
@@ -57,8 +64,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
 
 ### disableAnimalSpawnOnChunkGen
 
@@ -67,8 +73,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`<br>
 
 ### disableSoundEngine
 
@@ -77,8 +82,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`<br>
 
 ### endGatewayChunkLoad (MC < 1.21)
 
@@ -88,8 +92,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### endPortalChunkLoad (MC < 1.21)
 
@@ -99,34 +102,25 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### notifyKyoyu
 
 > schematic(.litematicファイル)が[kyoyu](https://modrinth.com/plugin/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 
-> [!NOTE]
-> サーバー側でのみ機能する。
-
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### notifySyncmatica
 
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 
-> [!NOTE]
-> サーバー側でのみ機能する。
-
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### reloadPortalTicket
 
@@ -137,8 +131,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`
-<br><br>
+- Categories: `AMA`, `SURVIVAL`<br>
 
 ### requireAmaCarpetClient
 
@@ -147,8 +140,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
 
 ### requireAmaCarpetClientTimeoutSeconds
 
@@ -157,5 +149,4 @@
 - Type: `int`
 - Default value: `5`
 - Suggested options: `3`, `5`, `10`
-- Categories: `AMA`
-<br><br>
+- Categories: `AMA`<br>
