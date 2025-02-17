@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/amateras-server/ama-carpet.svg)](https://github.com/amateras-server/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
-[![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/px7wHEMUpd )
+[![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/px7wHEMUpd)
 
 A carpet addition made for **Amateras SMP**.<br>
 Currently supports **1.19~1.21.4**.
