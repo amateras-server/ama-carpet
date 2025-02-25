@@ -1,4 +1,6 @@
-<img src="https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png" width="256" style="display: block; margin: auto;">
+<div align=center>
+  <img src="https://raw.githubusercontent.com/amateras-server/ama-carpet/main/src/main/resources/assets/ama-carpet/icon_alpha_white.png" width=256>
+</div>
 
 # AmaCarpet
 
