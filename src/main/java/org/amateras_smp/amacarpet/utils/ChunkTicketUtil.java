@@ -30,6 +30,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.HashSet;
 
 public class ChunkTicketUtil {
+    //#if MC < 12105
 
     private static final String portalTicketFileName = "portal_tickets.json";
 
@@ -205,4 +206,5 @@ public class ChunkTicketUtil {
             }
         }
     }
+    //#endif
 }

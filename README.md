@@ -113,7 +113,7 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > Reloads all Nether portal chunk-loading tickets during server startup.
 > This ensures that chunk loaders remain functional after server restarts.

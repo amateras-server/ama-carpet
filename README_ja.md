@@ -112,7 +112,7 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > サーバーの起動時に、すべての記録されていたポータルチャンクロードチケットを再読み込みさせる。
 > これによりチャンクローダーがサーバーの再起動で壊れなくなる。
