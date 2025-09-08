@@ -19,7 +19,6 @@ Currently supports **1.19~1.21.4**.
 - [carpet](https://modrinth.com/mod/carpet) (required)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (required)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (optional)
-- [kyoyu](https://modrinth.com/mod/kyoyu) (optional)
 - [malilib](https://modrinth.com/mod/malilib) (optional)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (optional)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (optional)
@@ -100,14 +99,6 @@ Currently supports **1.19~1.21.4**.
 
 > Allows entities traveling through end portals to load a 3x3 chunk area, similar to nether portals.
 > This is a backport of a feature implemented in Minecraft 1.21.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
-### notifyKyoyu
-> Sends notifications to player's chat when a schematic is shared or unshared using [kyoyu](https://modrinth.com/plugin/kyoyu).
 
 - Type: `boolean`
 - Default value: `false`

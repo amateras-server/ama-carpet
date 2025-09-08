@@ -43,9 +43,6 @@ public class AmaCarpetSettings {
     //#endif
 
     @Rule(categories = { AMA, SURVIVAL })
-    public static boolean notifyKyoyu = false;
-
-    @Rule(categories = { AMA, SURVIVAL })
     public static boolean notifySyncmatica = false;
 
     @Rule(categories = { AMA, SURVIVAL })

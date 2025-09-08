@@ -4,8 +4,6 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
     "addon.carpet.SettingsManagerMixin",
-    "addon.kyoyu.PlacementMetaPacketMixin",
-    "addon.kyoyu.RemovePlacementPacketMixin",
     "addon.syncmatica.ServerCommunicationManagerMixin",
     "addon.syncmatica.SyncmaticManagerMixin",
     "network.PlayerListMixin",

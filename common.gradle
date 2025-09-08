@@ -52,8 +52,6 @@ dependencies {
         exclude group: 'com.github.sakura-ryoko', module: 'malilib'
         if (mcVersion == 12004 || mcVersion == 12006) exclude group: 'fi.dy.masa.malilib', module: 'malilib-fabric-1.20.6'
     }
-
-    modImplementation "maven.modrinth:kyoyu:${project.kyoyu_version}-fabric"
 }
 
 JavaVersion JAVA_COMPATIBILITY

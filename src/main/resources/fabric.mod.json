@@ -31,9 +31,6 @@
   ],
 
   "accessWidener": "ama-carpet.accesswidener",
-  "breaks": {
-    "kyoyu": "<=1.1.1"
-  },
   "depends": {
     "fabricloader": ">=0.16.10",
     "fabric": "*",

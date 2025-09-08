@@ -189,7 +189,6 @@ jobs:
             carpet(required)
             fabric-api(required)
             amatweaks(optional)
-            kyoyu(optional)
             malilib(optional)
             syncmatica(optional)
             tweakeroo(optional)
