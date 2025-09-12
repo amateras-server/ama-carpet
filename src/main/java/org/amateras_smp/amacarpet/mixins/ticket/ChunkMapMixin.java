@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChunkMap.class)
 public abstract class ChunkMapMixin {
-
+    //#if MC < 12105
     @Shadow @Final
     ServerLevel level;
 
@@ -25,4 +25,5 @@ public abstract class ChunkMapMixin {
     private void onServerCrash(IllegalStateException illegalStateException, String string, CallbackInfoReturnable<ReportedException> cir) {
         ChunkTicketUtil.addAllTickets(level);
     }
+    //#endif
 }

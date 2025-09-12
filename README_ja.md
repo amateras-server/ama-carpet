@@ -17,7 +17,6 @@
 - [carpet](https://modrinth.com/mod/carpet) (必須)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (必須)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (任意)
-- [kyoyu](https://modrinth.com/mod/kyoyu) (任意)
 - [malilib](https://modrinth.com/mod/malilib) (任意)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (任意)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (任意)
@@ -104,15 +103,6 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### notifyKyoyu
-
-> schematic(.litematicファイル)が[kyoyu](https://modrinth.com/plugin/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
@@ -122,7 +112,7 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > サーバーの起動時に、すべての記録されていたポータルチャンクロードチケットを再読み込みさせる。
 > これによりチャンクローダーがサーバーの再起動で壊れなくなる。

@@ -43,13 +43,12 @@ public class AmaCarpetSettings {
     //#endif
 
     @Rule(categories = { AMA, SURVIVAL })
-    public static boolean notifyKyoyu = false;
-
-    @Rule(categories = { AMA, SURVIVAL })
     public static boolean notifySyncmatica = false;
 
+    //#if MC < 12105
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean reloadPortalTicket = false;
+    //#endif
 
     @Rule(categories = { AMA })
     public static boolean requireAmaCarpetClient = false;

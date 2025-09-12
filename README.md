@@ -19,7 +19,6 @@ Currently supports **1.19~1.21.4**.
 - [carpet](https://modrinth.com/mod/carpet) (required)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (required)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (optional)
-- [kyoyu](https://modrinth.com/mod/kyoyu) (optional)
 - [malilib](https://modrinth.com/mod/malilib) (optional)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (optional)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (optional)
@@ -106,14 +105,6 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### notifyKyoyu
-> Sends notifications to player's chat when a schematic is shared or unshared using [kyoyu](https://modrinth.com/plugin/kyoyu).
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 > Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
 
@@ -122,7 +113,7 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > Reloads all Nether portal chunk-loading tickets during server startup.
 > This ensures that chunk loaders remain functional after server restarts.

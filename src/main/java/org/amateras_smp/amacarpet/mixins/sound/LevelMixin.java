@@ -19,7 +19,11 @@ public class LevelMixin {
         if (AmaCarpetSettings.disableSoundEngine) ci.cancel();
     }
 
+    //#if MC < 12105
     @Inject(method = "playSeededSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V", at = @At("HEAD"), cancellable = true)
+    //#else
+    //$$ @Inject(method = "playSeededSound(Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V", at = @At("HEAD"), cancellable = true)
+    //#endif
     public void onPlaySound1(CallbackInfo ci) {
         if (AmaCarpetSettings.disableSoundEngine) ci.cancel();
     }

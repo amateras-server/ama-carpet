@@ -17,7 +17,7 @@ import java.io.IOException;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
-
+    //#if MC < 12105
     @Inject(method = "prepareLevels", at = @At("HEAD"))
     private void onPrepareLevels(ChunkProgressListener chunkProgressListener, CallbackInfo ci) throws IOException {
         ChunkTicketUtil.setPath();
@@ -36,4 +36,5 @@ public class MinecraftServerMixin {
         if (!AmaCarpetSettings.reloadPortalTicket) return;
         ChunkTicketUtil.save();
     }
+    //#endif
 }
