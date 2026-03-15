@@ -1,4 +1,1 @@
 accessWidener	v1	named
-
-accessible field net/minecraft/server/level/DistanceManager ticketStorage Lnet/minecraft/world/level/TicketStorage;
-accessible field net/minecraft/world/level/TicketStorage tickets Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;

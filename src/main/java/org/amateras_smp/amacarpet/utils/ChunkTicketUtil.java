@@ -4,23 +4,21 @@
 
 package org.amateras_smp.amacarpet.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.TicketType;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
-import org.amateras_smp.amacarpet.AmaCarpetServer;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.HashSet;
-
 //#if MC < 12105
+//$$ import com.google.gson.Gson;
+//$$ import com.google.gson.JsonArray;
+//$$ import com.google.gson.JsonObject;
+//$$ import net.minecraft.resources.ResourceKey;
+//$$ import net.minecraft.server.level.ServerLevel;
+//$$ import net.minecraft.server.level.TicketType;
+//$$ import net.minecraft.world.level.ChunkPos;
+//$$ import net.minecraft.world.level.Level;
+//$$ import org.amateras_smp.amacarpet.AmaCarpetServer;
+//$$ import java.io.FileWriter;
+//$$ import java.io.IOException;
+//$$ import java.nio.file.Path;
+//$$ import java.util.HashSet;
+//$$ import com.google.gson.JsonElement;
 //$$ import java.nio.file.Files;
 //$$ import java.nio.file.StandardOpenOption;
 //$$ import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -33,33 +31,31 @@ import java.util.HashSet;
 //#endif
 
 public class ChunkTicketUtil {
-
-    private static final String portalTicketFileName = "portal_tickets.json";
-
-    private static final String OW = "overworld";
-    private static final String NE = "nether";
-    private static final String END = "end";
-
-    public static HashSet<Long> owPortalTickets = new HashSet<>();
-    public static HashSet<Long> nePortalTickets = new HashSet<>();
-    public static HashSet<Long> endPortalTickets = new HashSet<>();
-
-    private static Path portalTicketPath;
-    private static final Gson gson = new Gson();
-
-    public static void setPath() {
-        portalTicketPath = FileUtil.getWorldConfigDir().resolve(portalTicketFileName);
-    }
-
-    private static void clearJson() {
-        try (FileWriter writer = new FileWriter(String.valueOf(portalTicketPath))) {
-            writer.write("");
-        } catch (IOException e) {
-            AmaCarpetServer.LOGGER.error("failed clearing json : {}", e.getMessage());
-        }
-    }
-
     //#if MC < 12105
+    //$$ private static final String portalTicketFileName = "portal_tickets.json";
+
+    //$$ private static final String OW = "overworld";
+    //$$ private static final String NE = "nether";
+    //$$ private static final String END = "end";
+
+    //$$ public static HashSet<Long> owPortalTickets = new HashSet<>();
+    //$$ public static HashSet<Long> nePortalTickets = new HashSet<>();
+    //$$ public static HashSet<Long> endPortalTickets = new HashSet<>();
+
+    //$$ private static Path portalTicketPath;
+    //$$ private static final Gson gson = new Gson();
+
+    //$$ public static void setPath() {
+    //$$     portalTicketPath = FileUtil.getWorldConfigDir().resolve(portalTicketFileName);
+    //$$ }
+
+    //$$ private static void clearJson() {
+    //$$     try (FileWriter writer = new FileWriter(String.valueOf(portalTicketPath))) {
+    //$$         writer.write("");
+    //$$     } catch (IOException e) {
+    //$$         AmaCarpetServer.LOGGER.error("failed clearing json : {}", e.getMessage());
+    //$$     }
+    //$$ }
     //$$ public static void load() throws IOException {
     //$$     if (portalTicketPath == null) {
     //$$         AmaCarpetServer.LOGGER.error("Portal ticket path is not set.");
@@ -125,24 +121,22 @@ public class ChunkTicketUtil {
     //$$         AmaCarpetServer.LOGGER.error("Failed to reload portal tickets", e);
     //$$     }
     //$$ }
-    //#endif
 
-    private static void loadDimension(ServerLevel level, HashSet<Long> portalTickets, ResourceKey<Level> dimension) {
-        if (level != null) {
-            for (long pos : portalTickets) {
-                ChunkPos chunkPos = new ChunkPos(pos);
-                AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, level.dimension().toString());
-                //#if MC >= 12105
-                level.getChunkSource().addTicketWithRadius(TicketType.PORTAL, chunkPos, 3);
-                //#else
-                //$$ BlockPos blockPos = chunkPos.getBlockAt(0, 0, 0);
-                //$$ level.getChunkSource().addRegionTicket(TicketType.PORTAL, chunkPos, 3, blockPos);
-                //#endif
-            }
-        } else AmaCarpetServer.LOGGER.error("{} is null", dimension.toString());
-    }
+    //$$ private static void loadDimension(ServerLevel level, HashSet<Long> portalTickets, ResourceKey<Level> dimension) {
+    //$$     if (level != null) {
+    //$$         for (long pos : portalTickets) {
+    //$$             ChunkPos chunkPos = new ChunkPos(pos);
+    //$$             AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, level.dimension().toString());
+    //$$             //#if MC >= 12105
+    //$$             level.getChunkSource().addTicketWithRadius(TicketType.PORTAL, chunkPos, 3);
+    //$$             //#else
+    //$$             //$$ BlockPos blockPos = chunkPos.getBlockAt(0, 0, 0);
+    //$$             //$$ level.getChunkSource().addRegionTicket(TicketType.PORTAL, chunkPos, 3, blockPos);
+    //$$             //#endif
+    //$$         }
+    //$$     } else AmaCarpetServer.LOGGER.error("{} is null", dimension.toString());
+    //$$ }
 
-    //#if MC < 12105
     //$$ public static void save() {
     //$$     if (portalTicketPath == null) {
     //$$         AmaCarpetServer.LOGGER.error("portal ticket path is null");
@@ -159,45 +153,43 @@ public class ChunkTicketUtil {
     //$$         AmaCarpetServer.LOGGER.error("Failed to save portal tickets", e);
     //$$     }
     //$$ }
-    //#endif
 
-    private static JsonObject getJsonObject() {
-        JsonObject ticketData = new JsonObject();
+    //$$ private static JsonObject getJsonObject() {
+    //$$     JsonObject ticketData = new JsonObject();
 
-        JsonArray owArray = new JsonArray();
-        for (long pos : owPortalTickets) {
-            owArray.add(pos);
-        }
-        ticketData.add(OW, owArray);
+    //$$     JsonArray owArray = new JsonArray();
+    //$$     for (long pos : owPortalTickets) {
+    //$$         owArray.add(pos);
+    //$$     }
+    //$$     ticketData.add(OW, owArray);
 
-        JsonArray neArray = new JsonArray();
-        for (long pos : nePortalTickets) {
-            neArray.add(pos);
-        }
-        ticketData.add(NE, neArray);
+    //$$     JsonArray neArray = new JsonArray();
+    //$$     for (long pos : nePortalTickets) {
+    //$$         neArray.add(pos);
+    //$$     }
+    //$$     ticketData.add(NE, neArray);
 
-        JsonArray endArray = new JsonArray();
-        for (long pos : endPortalTickets) {
-            endArray.add(pos);
-        }
-        ticketData.add(END, endArray);
+    //$$     JsonArray endArray = new JsonArray();
+    //$$     for (long pos : endPortalTickets) {
+    //$$         endArray.add(pos);
+    //$$     }
+    //$$     ticketData.add(END, endArray);
 
-        return ticketData;
-    }
+    //$$     return ticketData;
+    //$$ }
 
-    private static void addTicket(long chunkPosLong, ResourceKey<Level> dimension) {
-        if (dimension == Level.OVERWORLD) {
-            owPortalTickets.add(chunkPosLong);
-        } else if (dimension == Level.NETHER) {
-            nePortalTickets.add(chunkPosLong);
-        } else if (dimension == Level.END) {
-            endPortalTickets.add(chunkPosLong);
-        } else {
-            AmaCarpetServer.LOGGER.error("unknown dimension : {}", dimension.toString());
-        }
-    }
+    //$$ private static void addTicket(long chunkPosLong, ResourceKey<Level> dimension) {
+    //$$     if (dimension == Level.OVERWORLD) {
+    //$$         owPortalTickets.add(chunkPosLong);
+    //$$     } else if (dimension == Level.NETHER) {
+    //$$         nePortalTickets.add(chunkPosLong);
+    //$$     } else if (dimension == Level.END) {
+    //$$         endPortalTickets.add(chunkPosLong);
+    //$$     } else {
+    //$$         AmaCarpetServer.LOGGER.error("unknown dimension : {}", dimension.toString());
+    //$$     }
+    //$$ }
 
-    //#if MC < 12105
     //$$ public static void addAllTickets(ServerLevel level) {
     //$$     if (!AmaCarpetSettings.reloadPortalTicket) return;
     //$$     DistanceManager distanceManager = level.getChunkSource().chunkMap.getDistanceManager();
@@ -213,5 +205,6 @@ public class ChunkTicketUtil {
     //$$         }
     //$$     }
     //$$ }
+
     //#endif
 }

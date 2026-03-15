@@ -8,14 +8,14 @@ import net.minecraft.server.level.ChunkMap;
 import org.spongepowered.asm.mixin.Mixin;
 
 //#if MC < 12105
-import net.minecraft.server.level.ServerLevel;
-import org.amateras_smp.amacarpet.utils.ChunkTicketUtil;
-import org.spongepowered.asm.mixin.Final;
-import net.minecraft.ReportedException;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+//$$ import net.minecraft.server.level.ServerLevel;
+//$$ import org.amateras_smp.amacarpet.utils.ChunkTicketUtil;
+//$$ import org.spongepowered.asm.mixin.Final;
+//$$ import net.minecraft.ReportedException;
+//$$ import org.spongepowered.asm.mixin.Shadow;
+//$$ import org.spongepowered.asm.mixin.injection.At;
+//$$ import org.spongepowered.asm.mixin.injection.Inject;
+//$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //#endif
 
 @Mixin(ChunkMap.class)
