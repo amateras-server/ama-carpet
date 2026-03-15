@@ -4,10 +4,7 @@
 
 package org.amateras_smp.amacarpet.client.mixins.network;
 
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.network.AmaCarpetPayload;
 import org.amateras_smp.amacarpet.network.PacketHandler;
@@ -18,47 +15,51 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //#if MC >= 12002
-//$$ import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
+import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
+//#else
+//$$ import net.minecraft.client.multiplayer.ClientPacketListener;
+//$$ import net.minecraft.network.FriendlyByteBuf;
+//$$ import net.minecraft.resources.ResourceLocation;
 //#endif
 
 @Mixin(
         //#if MC >= 12002
-        //$$ ClientCommonPacketListenerImpl.class
+        ClientCommonPacketListenerImpl.class
         //#else
-        ClientPacketListener.class
+        //$$ ClientPacketListener.class
         //#endif
 )
 public class ClientPacketListenerMixin {
     @Unique
     private final String targetMethod =
-    //#if MC < 12002
-    "handleCustomPayload";
+    //#if MC >= 12002
+    "handleCustomPayload(Lnet/minecraft/network/protocol/common/ClientboundCustomPayloadPacket;)V";
     //#else
-    //$$ "handleCustomPayload(Lnet/minecraft/network/protocol/common/ClientboundCustomPayloadPacket;)V";
+    //$$ "handleCustomPayload";
     //#endif
 
     @Inject(method = targetMethod, at = @At("HEAD"), cancellable = true)
     private void onCustomPayload$AMA(ClientboundCustomPayloadPacket packet, CallbackInfo ci) {
         //#if MC >= 12002
-        //$$ if (packet.payload() instanceof AmaCarpetPayload amaPayload) {
-        //$$    AmaCarpet.LOGGER.debug("received S2C AmaCarpetPayload : {}", amaPayload);
-        //$$    PacketHandler.handleS2C(amaPayload.content());
-        //$$ 	ci.cancel();
-        //$$ }
-        //#else
-        ResourceLocation channel = packet.getIdentifier();
-        FriendlyByteBuf data = packet.getData();
-
-        if (AmaCarpetPayload.identifier.equals(channel)) {
-            if (data.readableBytes() > 0) {
-                byte[] payload = data.readByteArray();
-                AmaCarpet.LOGGER.debug("onCustomS2CPayload, channel : {}, data : {}", channel, payload);
-                PacketHandler.handleS2C(payload);
-                ci.cancel();
-            } else {
-                AmaCarpet.LOGGER.warn("Received empty or insufficient data on channel: {}", channel);
-            }
+        if (packet.payload() instanceof AmaCarpetPayload amaPayload) {
+           AmaCarpet.LOGGER.debug("received S2C AmaCarpetPayload : {}", amaPayload);
+           PacketHandler.handleS2C(amaPayload.content());
+        	ci.cancel();
         }
+        //#else
+        //$$ ResourceLocation channel = packet.getIdentifier();
+        //$$ FriendlyByteBuf data = packet.getData();
+
+        //$$ if (AmaCarpetPayload.identifier.equals(channel)) {
+        //$$     if (data.readableBytes() > 0) {
+        //$$         byte[] payload = data.readByteArray();
+        //$$         AmaCarpet.LOGGER.debug("onCustomS2CPayload, channel : {}, data : {}", channel, payload);
+        //$$         PacketHandler.handleS2C(payload);
+        //$$         ci.cancel();
+        //$$     } else {
+        //$$         AmaCarpet.LOGGER.warn("Received empty or insufficient data on channel: {}", channel);
+        //$$     }
+        //$$ }
         //#endif
     }
 }

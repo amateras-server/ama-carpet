@@ -5,6 +5,7 @@
 package org.amateras_smp.amacarpet.client.mixins.network;
 
 import org.spongepowered.asm.mixin.Mixin;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 
 //#if 12002 <= MC && MC <= 12004
 //$$ import net.minecraft.network.FriendlyByteBuf;
@@ -12,18 +13,18 @@ import org.spongepowered.asm.mixin.Mixin;
 //$$ import org.amateras_smp.amacarpet.network.AmaCarpetPayload;
 //$$ import org.spongepowered.asm.mixin.injection.Inject;
 //$$ import org.spongepowered.asm.mixin.injection.At;
-//$$ @Mixin(net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket.class)
-//$$ public class ClientboundCustomPayloadPacketMixin {
+//$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+//#endif
+
+@Mixin(ClientboundCustomPayloadPacket.class)
+public class ClientboundCustomPayloadPacketMixin {
+//#if 12002 <= MC && MC <= 12004
 //$$     @Inject(method = "readPayload", at = @At("HEAD"), cancellable = true)
-//$$     private static void onReadPayload(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraft.network.protocol.common.custom.CustomPacketPayload> cir) {
-//$$         if (resourceLocation.equals(AmaCarpetPayload.identifier)) {
+//$$     private static void onReadPayload(ResourceLocation identifier, FriendlyByteBuf friendlyByteBuf, CallbackInfoReturnable<CustomPacketPayload> cir) {
+//$$         if (identifier.equals(AmaCarpetPayload.identifier)) {
 //$$             cir.setReturnValue(new AmaCarpetPayload(friendlyByteBuf));
 //$$         }
 //$$     }
-//$$ }
-//#else
-import org.amateras_smp.amacarpet.utils.compat.Dummy;
-@Mixin(Dummy.class)
-public class ClientboundCustomPayloadPacketMixin {
-}
 //#endif
+}

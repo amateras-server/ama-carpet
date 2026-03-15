@@ -41,17 +41,19 @@ public class PacketHandler {
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(raw); DataInputStream dis = new DataInputStream(byteArrayInputStream)) {
             String key = dis.readUTF();
             int len = dis.readInt();
-            byte[] data = new byte[len]; dis.readFully(data);
+            byte[] data = new byte[len];
+            dis.readFully(data);
 
-            for (Packet packet : packetRegistry) if (key.equals(packet.key)) {
-                try {
-                    return packet.clazz.getConstructor(byte[].class).newInstance((Object) data);
-                } catch (Exception e) {
-                    AmaCarpet.LOGGER.error("Failed to decode packet {}", key);
-                    AmaCarpet.LOGGER.error(e);
-                    return null;
+            for (Packet packet : packetRegistry)
+                if (key.equals(packet.key)) {
+                    try {
+                        return packet.clazz.getConstructor(byte[].class).newInstance((Object) data);
+                    } catch (Exception e) {
+                        AmaCarpet.LOGGER.error("Failed to decode packet {}", key);
+                        AmaCarpet.LOGGER.error(e);
+                        return null;
+                    }
                 }
-            }
             AmaCarpet.LOGGER.error("Unknown Packet {}", key);
         } catch (IOException e) {
             AmaCarpet.LOGGER.error("Unknown Error: \n" + e);
@@ -63,9 +65,11 @@ public class PacketHandler {
     private static byte[] encode(IPacket packet) {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); DataOutputStream dos = new DataOutputStream(byteArrayOutputStream)) {
             String key = null;
-            for (Packet p : packetRegistry) if (packet.getClass() == p.clazz) {
-                key = p.key; break;
-            }
+            for (Packet p : packetRegistry)
+                if (packet.getClass() == p.clazz) {
+                    key = p.key;
+                    break;
+                }
             if (key == null) return null;
 
             byte[] data = packet.encode();

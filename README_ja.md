@@ -2,7 +2,7 @@
 
 # AmaCarpet
 
-[English README](README.md)
+[English](README.md)
 
 [![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
@@ -17,7 +17,6 @@
 - [carpet](https://modrinth.com/mod/carpet) (必須)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (必須)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (任意)
-- [kyoyu](https://modrinth.com/mod/kyoyu) (任意)
 - [malilib](https://modrinth.com/mod/malilib) (任意)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (任意)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (任意)
@@ -57,15 +56,6 @@
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
-### debugModeAmaCarpet
-
-> AmaCarpet開発者用のdebug printを有効化する。
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`<br>
-
 ### disableAnimalSpawnOnChunkGen
 
 > 地形生成時の動物のスポーンを無効化する。軽量化やワールドサイズの縮小が期待される。
@@ -104,15 +94,6 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### notifyKyoyu
-
-> schematic(.litematicファイル)が[kyoyu](https://modrinth.com/plugin/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
@@ -122,11 +103,11 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > サーバーの起動時に、すべての記録されていたポータルチャンクロードチケットを再読み込みさせる。
 > これによりチャンクローダーがサーバーの再起動で壊れなくなる。
-> 25w05aで実装された機能のbackport。
+> 1.21.5で実装された機能のbackport。
 
 - Type: `boolean`
 - Default value: `false`

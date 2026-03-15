@@ -5,8 +5,8 @@
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
 
 import carpet.utils.Translations;
-import ch.endte.syncmatica.ServerPlacement;
-import ch.endte.syncmatica.SyncmaticManager;
+import ch.endte.syncmatica.data.ServerPlacement;
+import ch.endte.syncmatica.data.SyncmaticManager;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.ChatFormatting;
@@ -26,9 +26,9 @@ public class SyncmaticManagerMixin {
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifySyncmatica || AmaCarpet.kIsClient) return;
         Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
-                Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(
-                Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(
-                Component.literal("\nDimension : " + placement.getDimension()).withStyle(ChatFormatting.WHITE));
+            Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(
+            Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(
+            Component.literal("\nDimension : " + placement.getDimension()).withStyle(ChatFormatting.WHITE));
         AmaCarpetServer.LOGGER.info(message.getString());
         AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().broadcastSystemMessage(message, false);
     }

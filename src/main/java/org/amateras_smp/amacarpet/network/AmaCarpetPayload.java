@@ -6,32 +6,34 @@ package org.amateras_smp.amacarpet.network;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
+import net.minecraft.resources.Identifier;
 import org.amateras_smp.amacarpet.AmaCarpet;
-import org.amateras_smp.amacarpet.utils.ResourceLocationUtil;
+import org.amateras_smp.amacarpet.utils.IdentifierUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import io.netty.buffer.Unpooled;
 
-//#if MC >= 12002
-//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-//#if MC >= 12004
-//$$ import org.jetbrains.annotations.NotNull;
 //#if MC >= 12005
-//$$ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-//$$ import net.minecraft.network.codec.ByteBufCodecs;
-//$$ import net.minecraft.network.codec.StreamCodec;
-//$$ import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 //#endif
+
+//#if MC >= 12004
+import org.jetbrains.annotations.NotNull;
 //#endif
+
+//#if MC >= 12002
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //#endif
 
 public class AmaCarpetPayload
-        //#if MC >= 12002
-        //$$ implements CustomPacketPayload
-        //#endif
+    //#if MC >= 12002
+    implements CustomPacketPayload
+    //#endif
 {
     public byte[] content;
 
@@ -40,32 +42,33 @@ public class AmaCarpetPayload
     }
 
     //#if MC >= 12002
-    //$$ public AmaCarpetPayload(FriendlyByteBuf input) {
-    //$$     this.content = input.readByteArray();
-    //$$ }
+    public AmaCarpetPayload(FriendlyByteBuf input) {
+        this.content = input.readByteArray();
+    }
     //#endif
 
     public byte[] content() {
         return this.content;
     }
 
-    public static final ResourceLocation identifier = ResourceLocationUtil.of(AmaCarpet.kModId, "amacm");
+    public static final Identifier identifier = IdentifierUtil.of(AmaCarpet.kModId, "amacm");
 
     //#if MC >= 12005
-    //$$ public static final Type<AmaCarpetPayload> TYPE = new Type<>(identifier);
-    //$$ private static final StreamCodec<RegistryFriendlyByteBuf, AmaCarpetPayload> CODEC = StreamCodec.composite(
-    //$$         ByteBufCodecs.BYTE_ARRAY, AmaCarpetPayload::content, AmaCarpetPayload::new
-    //$$ );
-    //$$ @Override
-    //$$ public @NotNull Type<? extends CustomPacketPayload> type() {
-    //$$    return TYPE;
-    //$$ }
+    public static final Type<AmaCarpetPayload> TYPE = new Type<>(identifier);
+    private static final StreamCodec<RegistryFriendlyByteBuf, AmaCarpetPayload> CODEC = StreamCodec.composite(
+        ByteBufCodecs.BYTE_ARRAY, AmaCarpetPayload::content, AmaCarpetPayload::new
+    );
+
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
+    }
     //#endif
 
     public static void registerPayload() {
         //#if MC >= 12005
-        //$$ PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
-        //$$ PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
+        PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
+        PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
         //#endif
     }
 
@@ -76,9 +79,9 @@ public class AmaCarpetPayload
             AmaCarpet.LOGGER.debug("making c2s packet, identifier : {}, content : {}", identifier, content);
             write(buf);
             //#if MC >= 12002
-            //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
+            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
             //#else
-            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
+            //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
             //#endif
             networkHandler.send(packet);
         } else {
@@ -90,9 +93,9 @@ public class AmaCarpetPayload
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         write(buf);
         //#if MC >= 12002
-        //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
+        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
         //#else
-        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(identifier, buf);
+        //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(identifier, buf);
         //#endif
         player.connection.send(packet);
     }
@@ -100,16 +103,14 @@ public class AmaCarpetPayload
     //#if 12002 <= MC && MC <= 12004
     //$$ @Override
     //#endif
-    public void write(FriendlyByteBuf output)
-    {
+    public void write(FriendlyByteBuf output) {
         output.writeByteArray(content);
     }
 
     //#if 12002 <= MC && MC <= 12004
     //$$ @Override
     //#endif
-    public ResourceLocation id()
-    {
+    public Identifier id() {
         return identifier;
     }
 }

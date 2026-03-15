@@ -5,7 +5,7 @@
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
 
 import carpet.utils.Translations;
-import ch.endte.syncmatica.ServerPlacement;
+import ch.endte.syncmatica.data.ServerPlacement;
 import ch.endte.syncmatica.communication.*;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
@@ -21,22 +21,22 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
-//#if MC <= 12004
-import net.minecraft.resources.ResourceLocation;
+//#if MC >= 12006
+import ch.endte.syncmatica.network.PacketType;
 //#else
-//$$ import ch.endte.syncmatica.network.PacketType;
+//$$ import net.minecraft.resources.ResourceLocation;
 //#endif
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(ServerCommunicationManager.class)
 public abstract class ServerCommunicationManagerMixin extends CommunicationManager {
     @Inject(method = "handle", at = @At("HEAD"))
-    //#if MC <= 12004
-    private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySyncmatica || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
+    //#if MC >= 12004
+    private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
+        if (!AmaCarpetSettings.notifySyncmatica || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
     //#else
-    //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-    //$$     if (!AmaCarpetSettings.notifySyncmatica || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
+    //$$ private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
+    //$$     if (!AmaCarpetSettings.notifySyncmatica || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
     //#endif
         FriendlyByteBuf copiedBuf = new FriendlyByteBuf(packetBuf.copy());
         UUID placementId = copiedBuf.readUUID();

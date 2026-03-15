@@ -9,7 +9,6 @@ import org.amateras_smp.amacarpet.AmaCarpet;
 import org.apache.logging.log4j.Logger;
 
 public class AmaCarpetClient implements ClientModInitializer {
-
     public static Logger LOGGER;
 
     @Override

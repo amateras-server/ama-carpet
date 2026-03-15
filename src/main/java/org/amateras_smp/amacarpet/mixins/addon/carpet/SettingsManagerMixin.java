@@ -22,7 +22,7 @@ public class SettingsManagerMixin {
     private void onCarpetSettingsChanged(CommandSourceStack source, CarpetRule<?> rule, String newValue, CallbackInfoReturnable<Integer> cir) {
         if (rule.name().equals("cheatRestriction") && newValue.equals("true")) {
             AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayers().forEach(
-                    (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
+                (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
             );
             return;
         }

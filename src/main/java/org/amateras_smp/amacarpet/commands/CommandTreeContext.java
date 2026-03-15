@@ -24,9 +24,9 @@ public abstract class CommandTreeContext {
      */
 
     protected CommandTreeContext(
-            //#if MC >= 11900
-            CommandBuildContext commandBuildContext
-            //#endif
+        //#if MC >= 11900
+        CommandBuildContext commandBuildContext
+        //#endif
     ) {
         //#if MC >= 11900
         this.commandBuildContext = commandBuildContext;
@@ -34,30 +34,30 @@ public abstract class CommandTreeContext {
     }
 
     public static Register of(
-            CommandDispatcher<CommandSourceStack> dispatcher
-            //#if MC >= 11900
-            , CommandBuildContext commandBuildContext
-            //#endif
+        CommandDispatcher<CommandSourceStack> dispatcher
+        //#if MC >= 11900
+        , CommandBuildContext commandBuildContext
+        //#endif
     ) {
         return new Register(
-                dispatcher
-                //#if MC >= 11900
-                , commandBuildContext
-                //#endif
+            dispatcher
+            //#if MC >= 11900
+            , commandBuildContext
+            //#endif
         );
     }
 
     public static Node of(
-            ArgumentBuilder<CommandSourceStack, ?> node
-            //#if MC >= 11900
-            , CommandBuildContext commandBuildContext
-            //#endif
+        ArgumentBuilder<CommandSourceStack, ?> node
+        //#if MC >= 11900
+        , CommandBuildContext commandBuildContext
+        //#endif
     ) {
         return new Node(
-                node
-                //#if MC >= 11900
-                , commandBuildContext
-                //#endif
+            node
+            //#if MC >= 11900
+            , commandBuildContext
+            //#endif
         );
     }
 
@@ -70,10 +70,10 @@ public abstract class CommandTreeContext {
      */
     public static Node ofNonContext(ArgumentBuilder<CommandSourceStack, ?> node) {
         return of(
-                node
-                //#if MC >= 11900
-                , null
-                //#endif
+            node
+            //#if MC >= 11900
+            , null
+            //#endif
         );
     }
 
@@ -88,10 +88,10 @@ public abstract class CommandTreeContext {
      */
     public Node node(ArgumentBuilder<CommandSourceStack, ?> node) {
         return of(
-                node
-                //#if MC >= 11900
-                , commandBuildContext
-                //#endif
+            node
+            //#if MC >= 11900
+            , commandBuildContext
+            //#endif
         );
     }
 
@@ -99,15 +99,15 @@ public abstract class CommandTreeContext {
         public final CommandDispatcher<CommandSourceStack> dispatcher;
 
         private Register(
-                CommandDispatcher<CommandSourceStack> dispatcher
-                //#if MC >= 11900
-                , CommandBuildContext commandBuildContext
-                //#endif
+            CommandDispatcher<CommandSourceStack> dispatcher
+            //#if MC >= 11900
+            , CommandBuildContext commandBuildContext
+            //#endif
         ) {
             super(
-                    //#if MC >= 11900
-                    commandBuildContext
-                    //#endif
+                //#if MC >= 11900
+                commandBuildContext
+                //#endif
             );
             this.dispatcher = dispatcher;
         }
@@ -123,15 +123,15 @@ public abstract class CommandTreeContext {
         public final ArgumentBuilder<CommandSourceStack, ?> node;
 
         private Node(
-                ArgumentBuilder<CommandSourceStack, ?> node
-                //#if MC >= 11900
-                , CommandBuildContext commandBuildContext
-                //#endif
+            ArgumentBuilder<CommandSourceStack, ?> node
+            //#if MC >= 11900
+            , CommandBuildContext commandBuildContext
+            //#endif
         ) {
             super(
-                    //#if MC >= 11900
-                    commandBuildContext
-                    //#endif
+                //#if MC >= 11900
+                commandBuildContext
+                //#endif
             );
             this.node = node;
         }

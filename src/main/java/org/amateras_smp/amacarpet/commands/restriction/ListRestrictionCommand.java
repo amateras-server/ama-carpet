@@ -17,16 +17,16 @@ import static org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand
 
 public class ListRestrictionCommand extends AbstractCommand {
     private static final ListRestrictionCommand INSTANCE = new ListRestrictionCommand();
-    public static ListRestrictionCommand getInstance()
-    {
+
+    public static ListRestrictionCommand getInstance() {
         return INSTANCE;
     }
 
     @Override
     public void registerCommand(CommandTreeContext.Register context) {
         LiteralArgumentBuilder<CommandSourceStack> builder = literal("listrestriction")
-                .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandListRestriction))
-                .executes(this::listAll);
+            .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandListRestriction))
+            .executes(this::listAll);
         context.dispatcher.register(builder);
     }
 

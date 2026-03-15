@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 
 public class AmaCarpet implements ModInitializer {
-
     public static final String kModName = "AmaCarpet";
     public static final String kModId = "ama-carpet";
     public static boolean kIsClient;

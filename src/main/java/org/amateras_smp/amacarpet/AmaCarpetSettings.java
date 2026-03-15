@@ -16,45 +16,41 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-    @Rule(categories = { AMA, SURVIVAL })
+    @Rule(categories = {AMA, SURVIVAL})
     public static boolean cheatRestriction = false;
 
-    @Rule(categories = { AMA, COMMAND, SURVIVAL })
+    @Rule(categories = {AMA, COMMAND, SURVIVAL})
     public static String commandListRestriction = "true";
 
-    @Rule(categories = { AMA, COMMAND, SURVIVAL })
+    @Rule(categories = {AMA, COMMAND, SURVIVAL})
     public static String commandRestriction = "ops";
 
-    @Rule(categories = { AMA })
-    public static boolean debugModeAmaCarpet = false;
-
-    @Rule(categories = { AMA, OPTIMIZATION, SURVIVAL })
+    @Rule(categories = {AMA, OPTIMIZATION, SURVIVAL})
     public static boolean disableAnimalSpawnOnChunkGen = false;
 
-    @Rule(categories = { AMA, CREATIVE, OPTIMIZATION, SURVIVAL })
+    @Rule(categories = {AMA, CREATIVE, OPTIMIZATION, SURVIVAL})
     public static boolean disableSoundEngine = false;
 
     //#if MC < 12100
-    @Rule(categories = { AMA, SURVIVAL })
-    public static boolean endGatewayChunkLoad = false;
+    //$$ @Rule(categories = {AMA, SURVIVAL})
+    //$$ public static boolean endGatewayChunkLoad = false;
 
-    @Rule(categories = { AMA, SURVIVAL })
-    public static boolean endPortalChunkLoad = false;
+    //$$ @Rule(categories = {AMA, SURVIVAL})
+    //$$ public static boolean endPortalChunkLoad = false;
     //#endif
 
-    @Rule(categories = { AMA, SURVIVAL })
-    public static boolean notifyKyoyu = false;
-
-    @Rule(categories = { AMA, SURVIVAL })
+    @Rule(categories = {AMA, SURVIVAL})
     public static boolean notifySyncmatica = false;
 
-    @Rule(categories = { AMA, SURVIVAL })
-    public static boolean reloadPortalTicket = false;
+    //#if MC < 12105
+    //$$ @Rule(categories = {AMA, SURVIVAL})
+    //$$ public static boolean reloadPortalTicket = false;
+    //#endif
 
-    @Rule(categories = { AMA })
+    @Rule(categories = {AMA})
     public static boolean requireAmaCarpetClient = false;
 
-    @Rule(categories = { AMA }, options = {"3", "5", "10"}, strict = false, validators = TimeoutSecondsValidator.class)
+    @Rule(categories = {AMA}, options = {"3", "5", "10"}, strict = false, validators = TimeoutSecondsValidator.class)
     public static int requireAmaCarpetClientTimeoutSeconds = 5;
 
     private static class TimeoutSecondsValidator extends Validator<Integer> {

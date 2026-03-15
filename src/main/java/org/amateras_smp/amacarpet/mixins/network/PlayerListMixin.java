@@ -14,16 +14,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //#if MC >= 12002
-//$$ import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.CommonListenerCookie;
 //#endif
 
 @Mixin(PlayerList.class)
 public class PlayerListMixin {
     @Inject(method = "placeNewPlayer", at = @At("RETURN"))
-    //#if MC < 12002
-    private void onPlayerConnect(Connection connection, ServerPlayer serverPlayer, CallbackInfo ci) {
+    //#if MC >= 12002
+    private void onPlayerConnect(Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci) {
     //#else
-    //$$ private void onPlayerConnect(Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci) {
+    //$$ private void onPlayerConnect(Connection connection, ServerPlayer serverPlayer, CallbackInfo ci) {
     //#endif
         PlayerUtil.addShouldAuthPlayer(serverPlayer.getName().getString());
     }

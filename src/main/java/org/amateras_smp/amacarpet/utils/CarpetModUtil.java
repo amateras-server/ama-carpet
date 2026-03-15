@@ -34,11 +34,11 @@ public class CarpetModUtil {
     public static boolean canUseCarpetCommand(CommandSourceStack source) {
         // rule carpetCommandPermissionLevel is added in fabric carpet v1.4.55
         Object level =
-                //#if MC >= 11700
-                CarpetSettings.carpetCommandPermissionLevel;
-                //#else
-                //$$ 2;
-        //#endif
+            //#if MC >= 11700
+            CarpetSettings.carpetCommandPermissionLevel;
+            //#else
+            //$$ 2;
+            //#endif
 
         return canUseCommand(source, level);
     }

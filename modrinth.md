@@ -4,7 +4,7 @@
 
 # AmaCarpet
 
-[日本語の説明はこちら](https://github.com/amateras-server/ama-carpet/blob/main/README_ja.md)
+[日本語](https://github.com/amateras-server/ama-carpet/blob/main/README_ja.md)
 
 [![Dev Builds](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/amateras-server/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/amateras-server/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
@@ -19,7 +19,6 @@ Currently supports **1.19~1.21.4**.
 - [carpet](https://modrinth.com/mod/carpet) (required)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (required)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (optional)
-- [kyoyu](https://modrinth.com/mod/kyoyu) (optional)
 - [malilib](https://modrinth.com/mod/malilib) (optional)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (optional)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (optional)
@@ -59,15 +58,6 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`<br>
 
-### debugModeAmaCarpet
-
-> Enables debug print for AmaCarpet developer.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`<br>
-
 ### disableAnimalSpawnOnChunkGen
 
 > Disables animal spawning during chunk generation.
@@ -106,14 +96,6 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### notifyKyoyu
-> Sends notifications to player's chat when a schematic is shared or unshared using [kyoyu](https://modrinth.com/plugin/kyoyu).
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 > Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
 
@@ -122,11 +104,11 @@ Currently supports **1.19~1.21.4**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`<br>
 
-### reloadPortalTicket
+### reloadPortalTicket (MC < 1.21.5)
 
 > Reloads all Nether portal chunk-loading tickets during server startup.
 > This ensures that chunk loaders remain functional after server restarts.
-> This feature is a backport of the implementation in snapshot 25w05a.
+> This feature is a backport of the implementation in Minecraft 1.21.5
 
 - Type: `boolean`
 - Default value: `false`

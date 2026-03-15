@@ -28,37 +28,32 @@ import java.util.Map;
 public class AmaCarpetServer implements CarpetExtension {
 
     private static final AmaCarpetServer INSTANCE = new AmaCarpetServer();
-    public static final String COMPACT_NAME = AmaCarpet.kModId.replaceAll("-","");  // should be `amacarpet`
+    public static final String COMPACT_NAME = AmaCarpet.kModId.replaceAll("-", "");  // should be `amacarpet`
     public static final Logger LOGGER = AmaCarpet.LOGGER;
     public static MinecraftServer MINECRAFT_SERVER;
 
     @Override
-    public String version()
-    {
+    public String version() {
         return AmaCarpet.kModId;
     }
 
-    public static AmaCarpetServer getInstance()
-    {
+    public static AmaCarpetServer getInstance() {
         return INSTANCE;
     }
 
-    public static void init()
-    {
+    public static void init() {
         CarpetServer.manageExtension(INSTANCE);
     }
 
     @Override
-    public void onGameStarted()
-    {
+    public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(AmaCarpetSettings.class);
     }
 
     @Override
-    public void onServerLoaded(MinecraftServer server)
-    {
+    public void onServerLoaded(MinecraftServer server) {
         MINECRAFT_SERVER = server;
-        AmaCarpet.setDebug(AmaCarpetSettings.debugModeAmaCarpet);
+        // AmaCarpet.setDebug(true);
         AmaCarpet.LOGGER.debug("[AmaCarpet] Debug mode is enabled");
     }
 
@@ -68,23 +63,23 @@ public class AmaCarpetServer implements CarpetExtension {
 
     @Override
     public void registerCommands(
-            CommandDispatcher<CommandSourceStack> dispatcher
-            //#if MC >= 11900
-            , CommandBuildContext commandBuildContext
-            //#endif
+        CommandDispatcher<CommandSourceStack> dispatcher
+        //#if MC >= 11900
+        , CommandBuildContext commandBuildContext
+        //#endif
     ) {
         CommandTreeContext.Register context = CommandTreeContext.of(
-                dispatcher
-                //#if MC >= 11900
-                , commandBuildContext
-                //#endif
+            dispatcher
+            //#if MC >= 11900
+            , commandBuildContext
+            //#endif
         );
 
         Lists.newArrayList(
-                ListRestrictionCommand.getInstance(),
-                RestrictionCommand.getInstance()
+            ListRestrictionCommand.getInstance(),
+            RestrictionCommand.getInstance()
         ).forEach(command ->
-                command.registerCommand(context)
+            command.registerCommand(context)
         );
     }
 
@@ -107,6 +102,7 @@ public class AmaCarpetServer implements CarpetExtension {
         } catch (IOException e) {
             return Map.of();
         }
-        return new Gson().fromJson(jsonData, new TypeToken<Map<String, String>>() {}.getType());
+        return new Gson().fromJson(jsonData, new TypeToken<Map<String, String>>() {
+        }.getType());
     }
 }
