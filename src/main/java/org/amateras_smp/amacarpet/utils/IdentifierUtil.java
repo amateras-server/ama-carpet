@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Amateras-Server
+// Copyright (c) 2026 Amateras-Server
 // This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 

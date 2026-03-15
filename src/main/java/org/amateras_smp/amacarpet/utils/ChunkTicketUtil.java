@@ -127,12 +127,8 @@ public class ChunkTicketUtil {
     //$$         for (long pos : portalTickets) {
     //$$             ChunkPos chunkPos = new ChunkPos(pos);
     //$$             AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, level.dimension().toString());
-    //$$             //#if MC >= 12105
-    //$$             level.getChunkSource().addTicketWithRadius(TicketType.PORTAL, chunkPos, 3);
-    //$$             //#else
-    //$$             //$$ BlockPos blockPos = chunkPos.getBlockAt(0, 0, 0);
-    //$$             //$$ level.getChunkSource().addRegionTicket(TicketType.PORTAL, chunkPos, 3, blockPos);
-    //$$             //#endif
+    //$$             BlockPos blockPos = chunkPos.getBlockAt(0, 0, 0);
+    //$$             level.getChunkSource().addRegionTicket(TicketType.PORTAL, chunkPos, 3, blockPos);
     //$$         }
     //$$     } else AmaCarpetServer.LOGGER.error("{} is null", dimension.toString());
     //$$ }

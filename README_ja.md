@@ -11,7 +11,7 @@
 [![Discord](https://img.shields.io/discord/1157213775791935539)](https://discord.gg/px7wHEMUpd)
 
 **Amateras SMP**のために作られたcarpet addition。<br>
-現在は1.19から1.21.4に対応。
+現在は1.19から1.21.11に対応。
 
 ## Dependencies
 - [carpet](https://modrinth.com/mod/carpet) (必須)
