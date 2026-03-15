@@ -32,11 +32,18 @@
 
   "accessWidener": "ama-carpet.accesswidener",
   "depends": {
-    "fabricloader": ">=0.16.10",
-    "fabric": "*",
+    "fabricloader": ">=0.18.4",
     "fabric-api": "*",
     "carpet": "*",
     "minecraft": "${minecraft_dependency}"
+  },
+  "suggests": {
+    "amatweaks": "*",
+    "litematica": "*",
+    "malilib": "*",
+    "syncmatica": "*",
+    "tweakermore": "*",
+    "tweakeroo": "*"
   },
   "custom": {
     "modmenu": {
