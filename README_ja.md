@@ -76,26 +76,6 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`<br>
 
-### endGatewayChunkLoad (MC < 1.21)
-
-> エンドゲートウェイポータルを通過したエンティティが3x3チャンクをロードするようにする。
-> 1.21で実装された機能のbackport。
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
-### endPortalChunkLoad (MC < 1.21)
-
-> エンドポータルを通過したエンティティが3x3チャンクをロードするようにする。
-> 1.21で実装された機能のbackport。
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。

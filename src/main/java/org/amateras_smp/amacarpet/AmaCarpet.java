@@ -23,7 +23,7 @@ public class AmaCarpet implements ModInitializer {
     public void onInitialize() {
         LOGGER = LogManager.getLogger(kModName);
         // setDebug(true);
-        LOGGER.debug("[AmaCarpet] Debug mode is enabled");
+        // LOGGER.debug("[AmaCarpet] Debug mode is enabled");
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
         kModVersion = fabricLoader.getModContainer(kModId).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();

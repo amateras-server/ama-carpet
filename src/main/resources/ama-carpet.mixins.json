@@ -12,8 +12,6 @@
     "ticket.ChunkMapMixin",
     "ticket.MinecraftServerMixin",
     "ticket.ServerChunkCacheMixin",
-    "ticket.ServerLevelMixin",
-    "ticket.TheEndGatewayBlockEntityMixin",
     "utils.MinecraftServerMixin"
   ],
   "injectors": {

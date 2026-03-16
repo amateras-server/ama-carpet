@@ -4,17 +4,13 @@
 
 package org.amateras_smp.amacarpet;
 
-import carpet.api.settings.CarpetRule;
 import carpet.api.settings.Rule;
-import carpet.api.settings.Validator;
-import net.minecraft.commands.CommandSourceStack;
-import org.jetbrains.annotations.Nullable;
 
 import static carpet.api.settings.RuleCategory.*;
 
 public class AmaCarpetSettings {
 
-    private static final String AMA = "AMA";
+    private static final String AMA = "ama";
 
     @Rule(categories = {AMA, SURVIVAL})
     public static boolean cheatRestriction = false;
@@ -30,14 +26,6 @@ public class AmaCarpetSettings {
 
     @Rule(categories = {AMA, CREATIVE, OPTIMIZATION, SURVIVAL})
     public static boolean disableSoundEngine = false;
-
-    //#if MC < 12100
-    //$$ @Rule(categories = {AMA, SURVIVAL})
-    //$$ public static boolean endGatewayChunkLoad = false;
-
-    //$$ @Rule(categories = {AMA, SURVIVAL})
-    //$$ public static boolean endPortalChunkLoad = false;
-    //#endif
 
     @Rule(categories = {AMA, SURVIVAL})
     public static boolean notifySyncmatica = false;

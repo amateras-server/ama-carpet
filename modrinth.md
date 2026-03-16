@@ -78,26 +78,6 @@ Currently supports **1.19~1.21.11**.
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`<br>
 
-### endGatewayChunkLoad (MC < 1.21)
-
-> Allows entities traveling through end gateway portals to load a 3x3 chunk area, similar to nether portals.
-> This is a backport of a feature implemented in Minecraft 1.21.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
-### endPortalChunkLoad (MC < 1.21)
-
-> Allows entities traveling through end portals to load a 3x3 chunk area, similar to nether portals.
-> This is a backport of a feature implemented in Minecraft 1.21.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `AMA`, `SURVIVAL`<br>
-
 ### notifySyncmatica
 > Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
 
