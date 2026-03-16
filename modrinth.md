@@ -30,7 +30,7 @@ Currently supports **1.19~1.21.11**.
 
 ### cheatRestriction
 
-> Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
+> Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica), [AmaTweaks](https://modrinth.com/amatweaks). The features to restrict can be configured using the `/restriction` command.
 
 <strong><font color=60ddeb>**📝 NOTE:**</font></strong>
 > Only works in server side.
