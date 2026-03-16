@@ -8,6 +8,9 @@ import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.IConfigBoolean;
 import net.fabricmc.loader.api.FabricLoader;
 import org.amateras_smp.amacarpet.AmaCarpet;
+import org.amateras_smp.amacarpet.network.PacketHandler;
+import org.amateras_smp.amacarpet.network.packets.EnableCertainFeaturePacket;
+import org.amateras_smp.amacarpet.utils.StringUtil;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -121,6 +124,18 @@ public class ClientModUtil {
                               ImmutableList<String> watchList) {
         Restriction(String modId, String className, ImmutableList<String> watchList) {
             this(modId, className, "", watchList);
+        }
+    }
+
+    public static void check(String changed) {
+        String sneak_changed = StringUtil.camelToSneak(changed);
+
+        for (ClientModUtil.Restriction restriction : ClientModUtil.genericRestrictions) {
+            for (String feature : restriction.watchList()) {
+                if (sneak_changed.equals(restriction.featurePrefix() + feature)) {
+                    PacketHandler.sendC2S(new EnableCertainFeaturePacket(feature));
+                }
+            }
         }
     }
 }

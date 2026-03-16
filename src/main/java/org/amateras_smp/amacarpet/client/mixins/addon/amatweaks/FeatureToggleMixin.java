@@ -9,9 +9,6 @@ import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.client.utils.ClientModUtil;
-import org.amateras_smp.amacarpet.network.PacketHandler;
-import org.amateras_smp.amacarpet.network.packets.EnableCertainFeaturePacket;
-import org.amateras_smp.amacarpet.utils.StringUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,13 +25,7 @@ public class FeatureToggleMixin {
     private void onToggleFeature(CallbackInfo ci) {
         AmaCarpet.LOGGER.debug("on value changed");
         if (!this.valueBoolean) return;
-        FeatureToggle self = (FeatureToggle)(Object) this;
-        String changed = self.getName();
-        String sneak_changed = StringUtil.camelToSneak(changed);
-        for (String feature : ClientModUtil.amatweaksFeatureToggleRestriction.watchList()){
-            if (sneak_changed.equals(ClientModUtil.amatweaksFeatureToggleRestriction.featurePrefix() + feature)) {
-                PacketHandler.sendC2S(new EnableCertainFeaturePacket(feature));
-            }
-        }
+        FeatureToggle self = (FeatureToggle) (Object) this;
+        ClientModUtil.check(self.getName());
     }
 }

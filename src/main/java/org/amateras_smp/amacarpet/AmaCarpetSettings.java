@@ -10,7 +10,7 @@ import static carpet.api.settings.RuleCategory.*;
 
 public class AmaCarpetSettings {
 
-    private static final String AMA = "ama";
+    private static final String AMA = "AMA";
 
     @Rule(categories = {AMA, SURVIVAL})
     public static boolean cheatRestriction = false;
