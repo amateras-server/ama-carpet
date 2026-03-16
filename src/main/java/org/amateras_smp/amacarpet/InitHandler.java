@@ -6,11 +6,18 @@ package org.amateras_smp.amacarpet;
 
 import org.amateras_smp.amacarpet.config.CheatRestrictionConfig;
 import org.amateras_smp.amacarpet.network.AmaCarpetPayload;
+import org.amateras_smp.amacarpet.network.CheckClient;
+import org.amateras_smp.amacarpet.network.PacketHandler;
 
 public class InitHandler {
     public static void init() {
         AmaCarpetServer.init();
         CheatRestrictionConfig.init();
-        AmaCarpetPayload.registerPayload();
+
+        if (!AmaCarpet.isClient()) {
+            AmaCarpetPayload.registerPayload();
+            CheckClient.registerEvents();
+            PacketHandler.registerC2SHandler();
+        }
     }
 }

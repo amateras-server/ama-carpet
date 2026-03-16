@@ -49,19 +49,4 @@ public class AmaCarpetSettings {
 
     @Rule(categories = {AMA})
     public static boolean requireAmaCarpetClient = false;
-
-    @Rule(categories = {AMA}, options = {"3", "5", "10"}, strict = false, validators = TimeoutSecondsValidator.class)
-    public static int requireAmaCarpetClientTimeoutSeconds = 5;
-
-    private static class TimeoutSecondsValidator extends Validator<Integer> {
-        @Override
-        public Integer validate(@Nullable CommandSourceStack commandSourceStack, CarpetRule<Integer> carpetRule, Integer newValue, String s) {
-            if (newValue >= 1 && newValue <= 180) {
-                return newValue;
-            } else {
-                AmaCarpet.LOGGER.debug("Invalid value specified for TimeoutSeconds({}); Adopted current value of {}", newValue, carpetRule.value());
-                return carpetRule.value();
-            }
-        }
-    }
 }

@@ -123,11 +123,3 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`<br>
 
-### requireAmaCarpetClientTimeoutSeconds
-
-> [requireAmaCarpetClient](#requireAmaCarpetClient)によるクライアントがama-carpetを導入しているかどうかのチェックがタイムアウトするまでの時間を1秒以上180秒以下で設定する。
-
-- Type: `int`
-- Default value: `5`
-- Suggested options: `3`, `5`, `10`
-- Categories: `AMA`<br>

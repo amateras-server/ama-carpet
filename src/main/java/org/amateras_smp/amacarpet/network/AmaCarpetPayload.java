@@ -20,19 +20,26 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+//#elseif MC >= 11904
+//$$ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+//$$ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+//$$ import net.fabricmc.fabric.api.networking.v1.FabricPacket;
+//$$ import net.fabricmc.fabric.api.networking.v1.PacketType;
 //#endif
 
 //#if MC >= 12004
 import org.jetbrains.annotations.NotNull;
 //#endif
 
-//#if MC >= 12002
+//#if MC >= 12005
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //#endif
 
 public class AmaCarpetPayload
-    //#if MC >= 12002
+    //#if MC >= 12005
     implements CustomPacketPayload
+    //#elseif MC >= 11904
+    //$$ implements FabricPacket
     //#endif
 {
     public byte[] content;
@@ -41,11 +48,9 @@ public class AmaCarpetPayload
         this.content = content;
     }
 
-    //#if MC >= 12002
     public AmaCarpetPayload(FriendlyByteBuf input) {
         this.content = input.readByteArray();
     }
-    //#endif
 
     public byte[] content() {
         return this.content;
@@ -63,6 +68,12 @@ public class AmaCarpetPayload
     public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
+    //#elseif MC >= 11904
+    //$$ public static final PacketType<AmaCarpetPayload> TYPE = PacketType.create(identifier, AmaCarpetPayload::new);
+    //$$ @Override
+    //$$ public PacketType<?> getType() {
+    //$$     return TYPE;
+    //$$ }
     //#endif
 
     public static void registerPayload() {
@@ -78,12 +89,16 @@ public class AmaCarpetPayload
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             AmaCarpet.LOGGER.debug("making c2s packet, identifier : {}, content : {}", identifier, content);
             write(buf);
-            //#if MC >= 12002
+
+            //#if MC >= 12005
             ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
+            networkHandler.send(packet);
+            //#elseif MC >= 11904
+            //$$ ClientPlayNetworking.send(this);
             //#else
             //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
+            //$$ networkHandler.send(packet);
             //#endif
-            networkHandler.send(packet);
         } else {
             AmaCarpet.LOGGER.debug("this is not client or client connection is null");
         }
@@ -92,25 +107,22 @@ public class AmaCarpetPayload
     public void sendS2C(ServerPlayer player) {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         write(buf);
-        //#if MC >= 12002
+
+        //#if MC >= 12005
         ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
+        player.connection.send(packet);
+        //#elseif MC >= 11904
+        //$$ ServerPlayNetworking.send(player, this);
         //#else
         //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(identifier, buf);
+        //$$ player.connection.send(packet);
         //#endif
-        player.connection.send(packet);
     }
 
-    //#if 12002 <= MC && MC <= 12004
+    //#if 11904 <= MC && MC <= 12004
     //$$ @Override
     //#endif
     public void write(FriendlyByteBuf output) {
         output.writeByteArray(content);
-    }
-
-    //#if 12002 <= MC && MC <= 12004
-    //$$ @Override
-    //#endif
-    public Identifier id() {
-        return identifier;
     }
 }

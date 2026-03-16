@@ -35,34 +35,33 @@ public class RestrictionCommand extends AbstractCommand {
     private static final RestrictionCommand INSTANCE = new RestrictionCommand();
     private static final ArrayList<String> FEATURE_SUGGESTIONS = new ArrayList<>();
 
-    public static RestrictionCommand getInstance()
-    {
+    public static RestrictionCommand getInstance() {
         return INSTANCE;
     }
 
     private static final SuggestionProvider<CommandSourceStack> FEATURE_NAME_SUGGESTIONS =
-            (CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
-                for (String feature : FEATURE_SUGGESTIONS) {
-                    if (feature.startsWith(builder.getRemaining())) {
-                        builder.suggest(feature);
-                    }
+        (CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) -> {
+            for (String feature : FEATURE_SUGGESTIONS) {
+                if (feature.startsWith(builder.getRemaining())) {
+                    builder.suggest(feature);
                 }
-                return builder.buildFuture();
-            };
+            }
+            return builder.buildFuture();
+        };
 
     @Override
     public void registerCommand(CommandTreeContext.Register context) {
         initializeFeatureSuggestions();
         LiteralArgumentBuilder<CommandSourceStack> builder = literal("restriction")
-                .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandRestriction))
-                .executes(this::listAll)
-                .then(argument("featureName", StringArgumentType.word())
-                    .suggests(FEATURE_NAME_SUGGESTIONS)
-                    .executes(this::getState)
-                    .then(argument("prohibit", BoolArgumentType.bool())
-                        .executes(this::changeSetting)
-                    )
-                );
+            .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandRestriction))
+            .executes(this::listAll)
+            .then(argument("featureName", StringArgumentType.word())
+                .suggests(FEATURE_NAME_SUGGESTIONS)
+                .executes(this::getState)
+                .then(argument("prohibit", BoolArgumentType.bool())
+                    .executes(this::changeSetting)
+                )
+            );
         context.dispatcher.register(builder);
     }
 
@@ -91,7 +90,7 @@ public class RestrictionCommand extends AbstractCommand {
         CheatRestrictionConfig.getInstance().set(featureName, (value ? "true" : "false"));
         context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.changed"), featureName, isRestricted(value))).withStyle(ChatFormatting.YELLOW));
         AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayers().forEach(
-                (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
+            (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
         );
         return Command.SINGLE_SUCCESS;
     }
@@ -114,11 +113,11 @@ public class RestrictionCommand extends AbstractCommand {
 
     public static int listAllRestrictions(CommandContext<CommandSourceStack> context) {
         MutableComponent message = Component.literal("CheatRestriction : ").withStyle(ChatFormatting.AQUA)
-                .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n\n" : "false\n\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
+            .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n\n" : "false\n\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
         for (String feature : FEATURE_SUGGESTIONS) {
             boolean value = CheatRestrictionConfig.getInstance().get(feature);
             message.append(Component.literal(feature + " : ").withStyle(ChatFormatting.YELLOW)
-                    .append(Component.literal(isRestricted(value) + "\n").withStyle(value ? ChatFormatting.RED : ChatFormatting.GREEN)));
+                .append(Component.literal(isRestricted(value) + "\n").withStyle(value ? ChatFormatting.RED : ChatFormatting.GREEN)));
         }
         context.getSource().sendSystemMessage(message);
         return Command.SINGLE_SUCCESS;

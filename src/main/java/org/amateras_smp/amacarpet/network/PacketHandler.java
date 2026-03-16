@@ -4,10 +4,17 @@
 
 package org.amateras_smp.amacarpet.network;
 
+import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
+import org.amateras_smp.amacarpet.client.AmaCarpetClient;
 import org.amateras_smp.amacarpet.network.packets.EnableSpecifiedFeaturePacket;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
 import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
@@ -16,18 +23,13 @@ import org.amateras_smp.amacarpet.network.packets.ModStatusResponsePacket;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 
 public class PacketHandler {
     private static final List<Packet> packetRegistry = new ArrayList<>();
 
-    private static class Packet {
-        private final String key;
-        private final Class<? extends IPacket> clazz;
-
-        Packet(String key, Class<? extends IPacket> clazz) {
-            this.key = key;
-            this.clazz = clazz;
-        }
+    private record Packet(String key, Class<? extends IPacket> clazz) {
     }
 
     static {
@@ -56,7 +58,7 @@ public class PacketHandler {
                 }
             AmaCarpet.LOGGER.error("Unknown Packet {}", key);
         } catch (IOException e) {
-            AmaCarpet.LOGGER.error("Unknown Error: \n" + e);
+            AmaCarpet.LOGGER.error("Unknown Error: \n{}", e);
         }
 
         return null;
@@ -107,5 +109,63 @@ public class PacketHandler {
         AmaCarpet.LOGGER.debug("sending s2c packet");
         AmaCarpetPayload packetPayload = new AmaCarpetPayload(encode(packet));
         packetPayload.sendS2C(player);
+    }
+
+    public static void registerC2SHandler() {
+        //#if MC >= 12005
+        ServerPlayNetworking.registerGlobalReceiver(
+            AmaCarpetPayload.TYPE,
+            (payload, context) -> {
+                context.server().execute(() -> {
+                    handleC2S(payload.content, context.player());
+                });
+            }
+        );
+        //#elseif MC >= 12002
+        //$$ ServerPlayNetworking.registerGlobalReceiver(
+        //$$     AmaCarpetPayload.TYPE,
+        //$$     (payload, player, responseSender) -> {
+        //$$         handleC2S(payload.content, player);
+        //$$     }
+        //$$ );
+        //#else
+        //$$ ServerPlayNetworking.registerGlobalReceiver(
+        //$$     AmaCarpetPayload.identifier,
+        //$$     (server, player, handler, buf, responseSender) -> {
+        //$$         server.execute(() -> {
+        //$$             handleC2S(buf.readByteArray(), player);
+        //$$         });
+        //$$     }
+        //$$ );
+        //#endif
+    }
+
+    public static void registerS2CHandler() {
+        //#if MC >= 12005
+        ClientPlayNetworking.registerGlobalReceiver(
+            AmaCarpetPayload.TYPE,
+            (payload, context) -> {
+                context.client().execute(() -> {
+                    handleS2C(payload.content);
+                });
+            }
+        );
+        //#elseif MC >= 12002
+        //$$ ClientPlayNetworking.registerGlobalReceiver(
+        //$$     AmaCarpetPayload.TYPE,
+        //$$     (payload, player, responseSender) -> {
+        //$$         handleS2C(payload.content);
+        //$$     }
+        //$$ );
+        //#else
+        //$$ ClientPlayNetworking.registerGlobalReceiver(
+        //$$     AmaCarpetPayload.identifier,
+        //$$     (client, handler, buf, responseSender) -> {
+        //$$         client.execute(() -> {
+        //$$             handleS2C(buf.readByteArray());
+        //$$         });
+        //$$     }
+        //$$ );
+        //#endif
     }
 }

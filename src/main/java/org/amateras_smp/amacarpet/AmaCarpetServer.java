@@ -17,6 +17,7 @@ import net.minecraft.server.MinecraftServer;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.amateras_smp.amacarpet.commands.restriction.ListRestrictionCommand;
 import org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand;
+import org.amateras_smp.amacarpet.network.PacketHandler;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 
@@ -53,8 +54,6 @@ public class AmaCarpetServer implements CarpetExtension {
     @Override
     public void onServerLoaded(MinecraftServer server) {
         MINECRAFT_SERVER = server;
-        // AmaCarpet.setDebug(true);
-        AmaCarpet.LOGGER.debug("[AmaCarpet] Debug mode is enabled");
     }
 
     @Override

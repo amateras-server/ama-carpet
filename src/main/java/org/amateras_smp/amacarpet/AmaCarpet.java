@@ -22,6 +22,8 @@ public class AmaCarpet implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER = LogManager.getLogger(kModName);
+        setDebug(true);
+        LOGGER.debug("[AmaCarpet] Debug mode is enabled");
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
         kModVersion = fabricLoader.getModContainer(kModId).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
@@ -30,11 +32,7 @@ public class AmaCarpet implements ModInitializer {
         LOGGER.info("{}({}) has initialized!", kModName, getVersion());
     }
 
-    public static String getVersion() {
-        return kModVersion;
-    }
-
-    public static void setDebug(boolean debug) {
+    private static void setDebug(boolean debug) {
         if (debug) {
             Configurator.setLevel(LOGGER, Level.DEBUG);
             LOGGER.info("[AmaCarpet] Enabled debug mode.");
@@ -42,6 +40,12 @@ public class AmaCarpet implements ModInitializer {
             Configurator.setLevel(LOGGER, Level.ERROR);
             LOGGER.info("[AmaCarpet] Disabled debug mode.");
         }
+    }
+
+    public static boolean isClient() { return kIsClient; }
+
+    public static String getVersion() {
+        return kModVersion;
     }
 
     public static class ModIds {

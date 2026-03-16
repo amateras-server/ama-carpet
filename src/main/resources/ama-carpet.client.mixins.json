@@ -5,10 +5,7 @@
   "client": [
     "addon.amatweaks.FeatureToggleMixin",
     "addon.malilib.ConfigBooleanMixin",
-    "addon.tweakeroo.FeatureToggleMixin",
-    "network.ClientboundCustomPayloadPacketMixin",
-    "network.ClientPacketListenerForHandshakeMixin",
-    "network.ClientPacketListenerMixin"
+    "addon.tweakeroo.FeatureToggleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

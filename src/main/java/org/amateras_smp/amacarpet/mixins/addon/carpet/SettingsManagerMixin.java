@@ -26,8 +26,5 @@ public class SettingsManagerMixin {
             );
             return;
         }
-        if (rule.name().equals("debugModeAmaCarpet")) {
-            AmaCarpet.setDebug(newValue.equals("true"));
-        }
     }
 }
