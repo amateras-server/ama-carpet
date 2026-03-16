@@ -12,14 +12,14 @@ import org.amateras_smp.amacarpet.utils.PlayerUtil;
 
 import java.nio.charset.StandardCharsets;
 
-public class EnableSpecifiedFeaturePacket extends IPacket {
+public class EnableCertainFeaturePacket extends IPacket {
     private final String featureName;
 
-    public EnableSpecifiedFeaturePacket(String featureName) {
+    public EnableCertainFeaturePacket(String featureName) {
         this.featureName = featureName;
     }
 
-    public EnableSpecifiedFeaturePacket(byte[] bytes) {
+    public EnableCertainFeaturePacket(byte[] bytes) {
         this.featureName = new String(bytes, StandardCharsets.UTF_8);
     }
 

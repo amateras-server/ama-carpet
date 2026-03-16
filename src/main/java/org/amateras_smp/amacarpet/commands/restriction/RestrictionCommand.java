@@ -113,11 +113,11 @@ public class RestrictionCommand extends AbstractCommand {
 
     public static int listAllRestrictions(CommandContext<CommandSourceStack> context) {
         MutableComponent message = Component.literal("CheatRestriction : ").withStyle(ChatFormatting.AQUA)
-            .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n\n" : "false\n\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
+            .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n" : "false\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
         for (String feature : FEATURE_SUGGESTIONS) {
             boolean value = CheatRestrictionConfig.getInstance().get(feature);
-            message.append(Component.literal(feature + " : ").withStyle(ChatFormatting.YELLOW)
-                .append(Component.literal(isRestricted(value) + "\n").withStyle(value ? ChatFormatting.RED : ChatFormatting.GREEN)));
+            message.append(Component.literal("\n" + feature + " : ").withStyle(ChatFormatting.YELLOW)
+                .append(Component.literal(isRestricted(value)).withStyle(value ? ChatFormatting.RED : ChatFormatting.GREEN)));
         }
         context.getSource().sendSystemMessage(message);
         return Command.SINGLE_SUCCESS;

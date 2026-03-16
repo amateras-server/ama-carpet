@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
+import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
 import org.amateras_smp.amacarpet.utils.TextUtil;
 
 public class CheckClient {
@@ -30,6 +31,9 @@ public class CheckClient {
 
                 AmaCarpet.LOGGER.debug("sending AmaCarpet HandShake packet");
                 PacketHandler.sendS2C(new HandshakePacket(AmaCarpet.getVersion()), handler.player);
+
+                AmaCarpet.LOGGER.debug("sending mod status query packet");
+                PacketHandler.sendS2C(new ModStatusQueryPacket(), handler.player);
             } else {
                 AmaCarpet.LOGGER.debug("[AmaCarpet] not found client");
                 if (AmaCarpetSettings.requireAmaCarpetClient) {

@@ -8,9 +8,11 @@ import carpet.utils.Translations;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import org.amateras_smp.amacarpet.AmaCarpet;
 
 public class PlayerUtil {
     public static void onCatchCheater(ServerPlayer player, String cheatName) {
         player.connection.disconnect(Component.literal(String.format(Translations.tr("ama.message.on_cheat_dc"), cheatName)).withStyle(ChatFormatting.RED));
+        AmaCarpet.LOGGER.info("disconnected player {} because they enabled {} which is prohibited by cheatRestriction", player.getDisplayName().getString(), cheatName);
     }
 }

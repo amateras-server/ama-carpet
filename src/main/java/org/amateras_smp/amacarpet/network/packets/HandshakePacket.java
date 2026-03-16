@@ -31,7 +31,6 @@ public class HandshakePacket extends IPacket {
     @Override
     public void onServer(ServerPlayer player) {
         AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpetClient, version {}.", player.getName().getString(), version);
-        PacketHandler.sendS2C(new ModStatusQueryPacket(), player);
     }
 
     @Override

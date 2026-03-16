@@ -10,7 +10,7 @@ import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.client.utils.ClientModUtil;
 import org.amateras_smp.amacarpet.network.PacketHandler;
-import org.amateras_smp.amacarpet.network.packets.EnableSpecifiedFeaturePacket;
+import org.amateras_smp.amacarpet.network.packets.EnableCertainFeaturePacket;
 import org.amateras_smp.amacarpet.utils.StringUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,8 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = ConfigBoolean.class, remap = false)
 public class ConfigBooleanMixin {
     @Inject(method = "setBooleanValue", at = @At("HEAD"))
-    private void onEnableFeature(boolean value, CallbackInfo ci) {
-        AmaCarpet.LOGGER.debug("setBooleanValue to {}", value ? "true" : "false");
+    private void onToggleFeature(boolean value, CallbackInfo ci) {
         if (!value) return;
         ConfigBoolean self = (ConfigBoolean)(Object) this;
         String changed = self.getName();
@@ -31,7 +30,7 @@ public class ConfigBooleanMixin {
         for (ClientModUtil.Restriction restriction : ClientModUtil.genericRestrictions) {
             for (String feature : restriction.watchList()) {
                 if (sneak_changed.equals(restriction.featurePrefix() + feature)) {
-                    PacketHandler.sendC2S(new EnableSpecifiedFeaturePacket(feature));
+                    PacketHandler.sendC2S(new EnableCertainFeaturePacket(feature));
                 }
             }
         }

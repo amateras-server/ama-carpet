@@ -48,6 +48,11 @@ public class ClientModUtil {
     public static final Restriction amatweaksFeatureToggleRestriction = new Restriction(AmaCarpet.ModIds.amatweaks, "org.amateras_smp.amatweaks.config.FeatureToggle", "TWEAK_", ImmutableList.of(
         "auto_eat",
         "auto_firework_glide",
+        "auto_restock_inventory",
+        "hold_back",
+        "hold_forward",
+        "hold_left",
+        "hold_right",
         "interaction_history",
         "prevent_breaking_adjacent_portal",
         "prevent_placement_on_portal_sides",

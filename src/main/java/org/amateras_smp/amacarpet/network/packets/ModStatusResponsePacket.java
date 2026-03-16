@@ -50,8 +50,6 @@ public class ModStatusResponsePacket extends IPacket {
             }
 
             return byteArrayOutputStream.toByteArray();
-
-
         } catch (IOException e) {
             AmaCarpet.LOGGER.error("couldn't encode mod status response packet : ", e);
         }

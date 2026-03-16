@@ -4,18 +4,13 @@
 
 package org.amateras_smp.amacarpet.network;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
-import org.amateras_smp.amacarpet.client.AmaCarpetClient;
-import org.amateras_smp.amacarpet.network.packets.EnableSpecifiedFeaturePacket;
+import org.amateras_smp.amacarpet.network.packets.EnableCertainFeaturePacket;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
 import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
 import org.amateras_smp.amacarpet.network.packets.ModStatusResponsePacket;
@@ -23,7 +18,6 @@ import org.amateras_smp.amacarpet.network.packets.ModStatusResponsePacket;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 
 public class PacketHandler {
@@ -33,7 +27,7 @@ public class PacketHandler {
     }
 
     static {
-        packetRegistry.add(new Packet("enable_specified_feature", EnableSpecifiedFeaturePacket.class));
+        packetRegistry.add(new Packet("enable_specified_feature", EnableCertainFeaturePacket.class));
         packetRegistry.add(new Packet("handshake", HandshakePacket.class));
         packetRegistry.add(new Packet("mod_status_query", ModStatusQueryPacket.class));
         packetRegistry.add(new Packet("mod_status_response", ModStatusResponsePacket.class));
@@ -132,8 +126,9 @@ public class PacketHandler {
         //$$ ServerPlayNetworking.registerGlobalReceiver(
         //$$     AmaCarpetPayload.identifier,
         //$$     (server, player, handler, buf, responseSender) -> {
+        //$$         byte[] data = buf.readByteArray();
         //$$         server.execute(() -> {
-        //$$             handleC2S(buf.readByteArray(), player);
+        //$$             handleC2S(data, player);
         //$$         });
         //$$     }
         //$$ );
@@ -161,8 +156,9 @@ public class PacketHandler {
         //$$ ClientPlayNetworking.registerGlobalReceiver(
         //$$     AmaCarpetPayload.identifier,
         //$$     (client, handler, buf, responseSender) -> {
+        //$$         byte[] data = buf.readByteArray();
         //$$         client.execute(() -> {
-        //$$             handleS2C(buf.readByteArray());
+        //$$             handleS2C(data);
         //$$         });
         //$$     }
         //$$ );
