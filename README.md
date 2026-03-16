@@ -19,8 +19,10 @@ Currently supports **1.19~1.21.11**.
 - [carpet](https://modrinth.com/mod/carpet) (required)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (required)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (optional)
+- [litematica](https://modrinth.com/mod/litematica) (optional)
 - [malilib](https://modrinth.com/mod/malilib) (optional)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (optional)
+- [tweakermore](https://modrinth.com/mod/tweakermore) (optional)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (optional)
 
 ## Rules
@@ -28,7 +30,7 @@ Currently supports **1.19~1.21.11**.
 
 ### cheatRestriction
 
-> Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
+> Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica), [AmaTweaks](https://modrinth.com/amatweaks). The features to restrict can be configured using the `/restriction` command.
 
 > [!NOTE]
 > Only works in server side.
@@ -65,7 +67,7 @@ Currently supports **1.19~1.21.11**.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`<br>
+- Categories: `AMA`, `EXPERIMENTAL`, `SURVIVAL`<br>
 
 ### disableSoundEngine
 
@@ -118,7 +120,6 @@ Currently supports **1.19~1.21.11**.
 ### requireAmaCarpetClient
 
 > Prevents clients without AmaCarpet installed from logging in.
-> The timeout duration can be configured with [requireAmaCarpetClientTimeoutSeconds](#requireamacarpetclienttimeoutseconds).
 
 - Type: `boolean`
 - Default value: `false`

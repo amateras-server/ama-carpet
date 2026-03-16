@@ -25,7 +25,7 @@ public class AmaCarpetSettings {
     @Rule(categories = {AMA, COMMAND, SURVIVAL})
     public static String commandRestriction = "ops";
 
-    @Rule(categories = {AMA, OPTIMIZATION, SURVIVAL})
+    @Rule(categories = {AMA, EXPERIMENTAL, SURVIVAL})
     public static boolean disableAnimalSpawnOnChunkGen = false;
 
     @Rule(categories = {AMA, CREATIVE, OPTIMIZATION, SURVIVAL})

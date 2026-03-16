@@ -17,8 +17,10 @@
 - [carpet](https://modrinth.com/mod/carpet) (必須)
 - [fabric-api](https://modrinth.com/mod/fabric-api) (必須)
 - [amatweaks](https://modrinth.com/mod/amatweaks) (任意)
+- [litematica](https://modrinth.com/mod/litematica) (任意)
 - [malilib](https://modrinth.com/mod/malilib) (任意)
 - [syncmatica](https://modrinth.com/mod/syncmatica) (任意)
+- [tweakermore](https://modrinth.com/mod/tweakermore) (任意)
 - [tweakeroo](https://modrinth.com/mod/tweakeroo) (任意)
 
 
@@ -27,10 +29,10 @@
 
 ### cheatRestriction
 
-> [tweakeroo](https://modrinth.com/mod/tweakeroo)や[tweakermore](https://modrinth.com/mod/tweakermore)、[litematica](https://modrinth.com/mod/litematica)の中の指定された機能を禁止する。禁止する機能は`/restriction`コマンドで指定できる。
+> [tweakeroo](https://modrinth.com/mod/tweakeroo)や[tweakermore](https://modrinth.com/mod/tweakermore)、[litematica](https://modrinth.com/mod/litematica)、[amatweaks](https://modrinth.com/amatweaks)などにのクライアントmodに含まれる指定された機能を禁止する。禁止する機能は`/restriction`コマンドで指定できる。引数なしで`/restriction`(op)か`/listrestriction`を実行することにより設定可能な項目の一覧を確認可能。
 
 > [!NOTE]
-> サーバー側でのみ機能する。
+> サーバー側でのみ動作する。
 
 - Type: `boolean`
 - Default value: `false`
@@ -40,7 +42,7 @@
 ### commandListRestriction
 
 > `/listrestriction`コマンドを有効化し、[cheatRestriction](#cheatRestriction)により禁止されているクライアントmodの機能の一覧をこのコマンドで閲覧できるようにする。
-> `/restriction`コマンドを引数なしで実行したときと同じ結果が返ってくるが、このコマンドはデフォルトではop権限を持っていないプレイヤーも実行することができる。
+> デフォルトでは`/restriction`コマンドを引数なしで実行したときと同じ結果を、op権限を持っていないプレイヤーでも確認することができる。
 
 - Type: `String`
 - Default value: `true`
@@ -63,7 +65,7 @@
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`<br>
+- Categories: `AMA`, `EXPERIMENTAL`, `SURVIVAL`<br>
 
 ### disableSoundEngine
 
@@ -116,7 +118,7 @@
 
 ### requireAmaCarpetClient
 
-> ama-carpetを導入していないクライアントによるサーバーへのログインを拒否する。タイムアウトまでの時間は[requireAmaCarpetClientTimeoutSeconds](#requireAmaCarpetClientTimeoutSeconds)にて設定できる。
+> ama-carpetを導入していないクライアントによるサーバーへのログインを拒否する。
 
 - Type: `boolean`
 - Default value: `false`
