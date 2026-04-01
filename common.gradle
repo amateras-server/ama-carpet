@@ -1,10 +1,11 @@
+final int mcVersion = project.mcVersion
+final boolean unobfuscated = mcVersion >= 26_00_00
+
 apply plugin: 'maven-publish'
-apply plugin: 'fabric-loom'
+apply plugin: unobfuscated ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
 apply plugin: 'com.replaymod.preprocess'
 
 ArrayList<String> mixinFiles = [ "ama-carpet.mixins.json", "ama-carpet.client.mixins.json" ]
-
-int mcVersion = project.mcVersion
 
 repositories {
     maven {
@@ -12,10 +13,14 @@ repositories {
         url = 'https://api.modrinth.com/maven'
     }
     maven {
-        url 'https://jitpack.io'
+        url = 'https://jitpack.io'
     }
     maven {
-        url 'https://maven.fallenbreath.me/releases'
+        url = 'https://masa.dy.fi/maven'
+        content { includeModule('carpet', 'fabric-carpet') }
+    }
+    maven {
+        url = 'https://maven.fallenbreath.me/releases'
     }
 }
 
@@ -28,31 +33,44 @@ configurations {
 }
 
 dependencies {
+    def autoImplementation = { Object... args -> unobfuscated ? implementation(*args) : modImplementation(*args) }
+    def autoRuntimeOnly = { Object... args -> unobfuscated ? runtimeOnly(*args) : modRuntimeOnly(*args) }
+    def autoCompileOnly = { Object... args -> unobfuscated ? compileOnly(*args) : modCompileOnly(*args) }
+
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
+    if (!unobfuscated) {
+      mappings loom.officialMojangMappings()
+    }
+
     // mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    autoImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
-    include(modImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditional_mixin_version}"))
+    // autoImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
+    include(autoImplementation("me.fallenbreath:conditional-mixin-fabric:${project.conditional_mixin_version}"))
 
-    modImplementation "maven.modrinth:carpet:${project.carpet_version}"
+    if (mcVersion >= 26_00_00) {
+      autoImplementation "carpet:fabric-carpet:${project.carpet_core_version}"
+    } else {
+      autoImplementation "maven.modrinth:carpet:${project.carpet_version}"
+    }
 
-    modImplementation "maven.modrinth:amatweaks:${project.amatweaks_version}"
-    modImplementation "maven.modrinth:litematica:${project.litematica_version}"
-    modImplementation "maven.modrinth:malilib:${project.malilib_version}"
-    modImplementation "maven.modrinth:syncmatica:${project.syncmatica_version}"
-    modImplementation "maven.modrinth:tweakermore:${project.tweakermore_version}"
-    modImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}"
+    // autoImplementation "maven.modrinth:amatweaks:${project.amatweaks_version}"
+    autoImplementation "maven.modrinth:litematica:${project.litematica_version}"
+    autoImplementation "maven.modrinth:malilib:${project.malilib_version}"
+    autoImplementation "maven.modrinth:syncmatica:${project.syncmatica_version}"
+    // autoImplementation "maven.modrinth:tweakermore:${project.tweakermore_version}"
+    autoImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}"
 }
 
 JavaVersion JAVA_COMPATIBILITY
-if (mcVersion >= 12005) {
+if (mcVersion >= 26_01_00) {
+    JAVA_COMPATIBILITY = JavaVersion.VERSION_25
+} else if (mcVersion >= 1_20_05) {
     JAVA_COMPATIBILITY = JavaVersion.VERSION_21
-} else if (mcVersion >= 11800) {
+} else if (mcVersion >= 1_18_00) {
     JAVA_COMPATIBILITY = JavaVersion.VERSION_17
-} else if (mcVersion >= 11700) {
+} else if (mcVersion >= 1_17_00) {
     JAVA_COMPATIBILITY = JavaVersion.VERSION_16
 } else {
     JAVA_COMPATIBILITY = JavaVersion.VERSION_1_8
@@ -63,7 +81,7 @@ loom {
     accessWidenerPath = file("${project.mod_id}.accesswidener")
 
     def commonVmArgs = ['-Dmixin.debug.export=true']
-    if (mcVersion < 11904) {
+    if (mcVersion < 1_19_04) {
         // carpet 1.4.100+v230314 for mc1.19.4 and above
         // fail to pass the check on at MinecraftServer_pingPlayerSampleLimit#modifyPlayerSampleLimit
         // see https://github.com/gnembon/fabric-carpet/pull/1938

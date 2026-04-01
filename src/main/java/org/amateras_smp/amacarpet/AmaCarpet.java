@@ -22,24 +22,13 @@ public class AmaCarpet implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER = LogManager.getLogger(kModName);
-        // setDebug(true);
-        // LOGGER.debug("[AmaCarpet] Debug mode is enabled");
+        // Configurator.setLevel(LOGGER, Level.DEBUG);
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
         kModVersion = fabricLoader.getModContainer(kModId).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
         kIsClient = fabricLoader.getEnvironmentType() == EnvType.CLIENT;
         InitHandler.init();
         LOGGER.info("{}({}) has initialized!", kModName, getVersion());
-    }
-
-    private static void setDebug(boolean debug) {
-        if (debug) {
-            Configurator.setLevel(LOGGER, Level.DEBUG);
-            LOGGER.info("[AmaCarpet] Enabled debug mode.");
-        } else {
-            Configurator.setLevel(LOGGER, Level.ERROR);
-            LOGGER.info("[AmaCarpet] Disabled debug mode.");
-        }
     }
 
     public static boolean isClient() { return kIsClient; }

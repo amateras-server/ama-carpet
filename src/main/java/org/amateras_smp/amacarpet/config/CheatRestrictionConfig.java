@@ -30,7 +30,7 @@ public class CheatRestrictionConfig {
         try {
             loadProperties(configFilePath);
         } catch (IOException e) {
-            AmaCarpet.LOGGER.error("Unable to load configuration file: " + e.getMessage(), e);
+            AmaCarpet.LOGGER.error("Unable to load configuration file: {}", e.getMessage());
         }
     }
 
@@ -49,16 +49,10 @@ public class CheatRestrictionConfig {
     }
 
     private void setDefaultProperties() {
-        for (ClientModUtil.Restriction r : ClientModUtil.genericRestrictions) {
+        for (ClientModUtil.Restriction r : ClientModUtil.allRestrictions()) {
             for (String feature : r.watchList()) {
                 properties.setProperty(feature, "false");
             }
-        }
-        for (String feature : ClientModUtil.amatweaksFeatureToggleRestriction.watchList()) {
-            properties.setProperty(feature, "false");
-        }
-        for (String feature : ClientModUtil.tweakerooFeatureToggleRestriction.watchList()) {
-            properties.setProperty(feature, "false");
         }
     }
 
@@ -73,7 +67,7 @@ public class CheatRestrictionConfig {
     public String getStringValue(String key) {
         String value = properties.getProperty(key);
         if (value == null || value.isBlank()) {
-            AmaCarpet.LOGGER.warn("Property not found for key: " + key);
+            AmaCarpet.LOGGER.warn("Property not found for key: {}", key);
         }
         return value;
     }
@@ -89,7 +83,7 @@ public class CheatRestrictionConfig {
             properties.setProperty(key, value);
             saveConfig(FileUtil.getServerConfigDir().resolve(configFileName));
         } else {
-            AmaCarpet.LOGGER.error("Unknown key tried to be set: " + key);
+            AmaCarpet.LOGGER.error("Unknown key tried to be set: {}", key);
         }
     }
 }

@@ -67,11 +67,9 @@ public class RestrictionCommand extends AbstractCommand {
 
     private static void initializeFeatureSuggestions() {
         FEATURE_SUGGESTIONS.clear();
-        for (ClientModUtil.Restriction r : ClientModUtil.genericRestrictions) {
+        for (ClientModUtil.Restriction r : ClientModUtil.allRestrictions()) {
             FEATURE_SUGGESTIONS.addAll(r.watchList());
         }
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.amatweaksFeatureToggleRestriction.watchList());
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooFeatureToggleRestriction.watchList());
     }
 
     private static String isRestricted(boolean b) {

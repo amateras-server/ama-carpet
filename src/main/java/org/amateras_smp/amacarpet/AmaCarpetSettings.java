@@ -35,6 +35,11 @@ public class AmaCarpetSettings {
     //$$ public static boolean reloadPortalTicket = false;
     //#endif
 
+    //#if MC >= 260100
+    @Rule(categories = {AMA})
+    public static boolean antiDeadDragonFix = false;
+    //#endif
+
     @Rule(categories = {AMA})
     public static boolean requireAmaCarpetClient = false;
 }

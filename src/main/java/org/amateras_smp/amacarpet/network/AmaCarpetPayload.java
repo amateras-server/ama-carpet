@@ -60,7 +60,7 @@ public class AmaCarpetPayload
 
     //#if MC >= 12005
     public static final Type<AmaCarpetPayload> TYPE = new Type<>(identifier);
-    private static final StreamCodec<RegistryFriendlyByteBuf, AmaCarpetPayload> CODEC = StreamCodec.composite(
+    private static final StreamCodec<FriendlyByteBuf, AmaCarpetPayload> CODEC = StreamCodec.composite(
         ByteBufCodecs.BYTE_ARRAY, AmaCarpetPayload::content, AmaCarpetPayload::new
     );
 
@@ -77,9 +77,12 @@ public class AmaCarpetPayload
     //#endif
 
     public static void registerPayload() {
-        //#if MC >= 12005
-        PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
-        PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
+        //#if MC >= 260100
+        PayloadTypeRegistry.serverboundPlay().register(TYPE, CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(TYPE, CODEC);
+        //#elseif MC >= 12005
+        //$$ PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
+        //$$ PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
         //#endif
     }
 
@@ -91,13 +94,11 @@ public class AmaCarpetPayload
             write(buf);
 
             //#if MC >= 12005
-            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
-            networkHandler.send(packet);
+            networkHandler.send(new ServerboundCustomPayloadPacket(this));
             //#elseif MC >= 11904
             //$$ ClientPlayNetworking.send(this);
             //#else
-            //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(identifier, buf);
-            //$$ networkHandler.send(packet);
+            //$$ networkHandler.send(new ServerboundCustomPayloadPacket(identifier, buf));
             //#endif
         } else {
             AmaCarpet.LOGGER.debug("this is not client or client connection is null");

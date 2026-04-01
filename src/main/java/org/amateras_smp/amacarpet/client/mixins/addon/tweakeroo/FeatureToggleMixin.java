@@ -17,15 +17,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.tweakeroo))
 @Mixin(value = FeatureToggle.class, remap = false)
-public class FeatureToggleMixin {
+public abstract class FeatureToggleMixin {
     @Shadow
-    private boolean valueBoolean;
+    public abstract boolean getBooleanValue();
 
     @Inject(method = "onValueChanged", at = @At("HEAD"))
     private void onToggleFeature(CallbackInfo ci) {
         AmaCarpet.LOGGER.debug("on value changed");
-        if (!this.valueBoolean) return;
-        FeatureToggle self = (FeatureToggle)(Object) this;
-        ClientModUtil.check(self.getName());
+        if (this.getBooleanValue()) {
+            FeatureToggle self = (FeatureToggle) (Object) this;
+            ClientModUtil.check(self.getName());
+        }
     }
 }

@@ -2,9 +2,8 @@
   "schemaVersion": 1,
   "id": "${id}",
   "version": "${version}",
-
   "name": "${name}",
-  "description": "carpet addition made for amateras",
+  "description": "Carpet addition made for Amateras",
   "license": "LGPL-3",
   "authors": [
     "pugur"
@@ -13,9 +12,7 @@
     "issues": "https://github.com/amateras-server/ama-carpet/issues",
     "sources": "https://github.com/amateras-server/ama-carpet"
   },
-
   "icon": "assets/ama-carpet/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -29,21 +26,12 @@
     "ama-carpet.mixins.json",
     "ama-carpet.client.mixins.json"
   ],
-
   "accessWidener": "ama-carpet.accesswidener",
   "depends": {
-    "fabricloader": ">=0.18.4",
+    "minecraft": "${minecraft_dependency}",
+    "fabricloader": ">=0.15.0",
     "fabric-api": "*",
-    "carpet": "*",
-    "minecraft": "${minecraft_dependency}"
-  },
-  "suggests": {
-    "amatweaks": "*",
-    "litematica": "*",
-    "malilib": "*",
-    "syncmatica": "*",
-    "tweakermore": "*",
-    "tweakeroo": "*"
+    "carpet": "*"
   },
   "custom": {
     "modmenu": {

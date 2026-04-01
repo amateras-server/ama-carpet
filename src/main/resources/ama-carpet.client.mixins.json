@@ -3,7 +3,6 @@
   "package": "org.amateras_smp.amacarpet.client.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
-    "addon.amatweaks.FeatureToggleMixin",
     "addon.malilib.ConfigBooleanMixin",
     "addon.tweakeroo.FeatureToggleMixin"
   ],

@@ -20,8 +20,9 @@ public class ConfigBooleanMixin {
     @Inject(method = "setBooleanValue", at = @At("HEAD"))
     private void onSetBooleanValue(boolean value, CallbackInfo ci) {
         AmaCarpet.LOGGER.debug("on set boolean value");
-        if (!value) return;
-        ConfigBoolean self = (ConfigBoolean)(Object) this;
-        ClientModUtil.check(self.getName());
+        if (value) {
+            ConfigBoolean self = (ConfigBoolean) (Object) this;
+            ClientModUtil.check(self.getName());
+        }
     }
 }
