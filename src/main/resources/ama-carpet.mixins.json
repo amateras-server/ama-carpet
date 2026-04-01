@@ -3,11 +3,12 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
+    "EnderDragonMixin",
     "addon.carpet.SettingsManagerMixin",
     "addon.syncmatica.ServerCommunicationManagerMixin",
     "addon.syncmatica.SyncmaticManagerMixin",
-    "spawn.FlatLevelSourceMixin",
     "sound.LevelMixin",
+    "spawn.FlatLevelSourceMixin",
     "spawn.NoiseBasedChunkGeneratorMixin",
     "ticket.ChunkMapMixin",
     "ticket.MinecraftServerMixin",
