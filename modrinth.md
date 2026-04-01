@@ -28,6 +28,10 @@ Currently supports **1.19~1.21.11**.
 ## Rules
 
 
+### antiDeadDragonFix (MC >= 26.1)
+
+> Brings back a bug that dead EnderDragon with `deathDragonTime` > 200 not to be removed.
+
 ### cheatRestriction
 
 > Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica), [AmaTweaks](https://modrinth.com/amatweaks). The features to restrict can be configured using the `/restriction` command.
@@ -79,6 +83,7 @@ Currently supports **1.19~1.21.11**.
 - Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`<br>
 
 ### notifySyncmatica
+
 > Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica).
 
 - Type: `boolean`

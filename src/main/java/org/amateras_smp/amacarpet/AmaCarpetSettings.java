@@ -12,6 +12,11 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
+    //#if MC >= 260100
+    @Rule(categories = {AMA})
+    public static boolean antiDeadDragonFix = false;
+    //#endif
+
     @Rule(categories = {AMA, SURVIVAL})
     public static boolean cheatRestriction = false;
 
@@ -33,11 +38,6 @@ public class AmaCarpetSettings {
     //#if MC < 12105
     //$$ @Rule(categories = {AMA, SURVIVAL})
     //$$ public static boolean reloadPortalTicket = false;
-    //#endif
-
-    //#if MC >= 260100
-    @Rule(categories = {AMA})
-    public static boolean antiDeadDragonFix = false;
     //#endif
 
     @Rule(categories = {AMA})
