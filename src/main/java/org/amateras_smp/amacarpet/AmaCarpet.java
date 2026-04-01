@@ -7,10 +7,11 @@ package org.amateras_smp.amacarpet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.Configurator;
+
+// import org.apache.logging.log4j.core.config.Configurator;
+// import static org.apache.logging.log4j.Level.DEBUG;
 
 public class AmaCarpet implements ModInitializer {
     public static final String kModName = "AmaCarpet";
@@ -22,7 +23,7 @@ public class AmaCarpet implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER = LogManager.getLogger(kModName);
-        // Configurator.setLevel(LOGGER, Level.DEBUG);
+        // Configurator.setLevel(LOGGER, DEBUG);
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
         kModVersion = fabricLoader.getModContainer(kModId).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
