@@ -13,7 +13,7 @@
 [![Discord](https://img.shields.io/discord/1377258772166348890)](https://discord.gg/MR878KhsCj)
 
 A carpet addition made for **Amateras SMP**.<br>
-Currently supports **1.19~1.21.11**.
+Currently supporting **1.19~26.1**.
 
 ## Dependencies
 - [carpet](https://modrinth.com/mod/carpet) (required)
