@@ -32,6 +32,11 @@ Currently supporting **1.19~26.1**.
 
 > Brings back a bug that dead EnderDragon with `deathDragonTime` > 200 not to be removed.
 
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`<br>
+
 ### cheatRestriction
 
 > Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica), [AmaTweaks](https://modrinth.com/amatweaks). The features to restrict can be configured using the `/restriction` command.
