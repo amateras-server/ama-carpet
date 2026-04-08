@@ -17,6 +17,7 @@ import net.minecraft.server.MinecraftServer;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.amateras_smp.amacarpet.commands.restriction.ListRestrictionCommand;
 import org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand;
+import org.amateras_smp.amacarpet.logging.AmaCarpetLoggerRegistry;
 import org.amateras_smp.amacarpet.network.PacketHandler;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
@@ -88,6 +89,11 @@ public class AmaCarpetServer implements CarpetExtension {
         return null;
     }
     //#endif
+
+    @Override
+    public void registerLoggers() {
+        AmaCarpetLoggerRegistry.registerLoggers();
+    }
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {

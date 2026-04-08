@@ -1,1 +1,3 @@
 accessWidener	v1 official
+
+accessible field net/minecraft/world/entity/Entity ENTITY_COUNTER Ljava/util/concurrent/atomic/AtomicInteger;

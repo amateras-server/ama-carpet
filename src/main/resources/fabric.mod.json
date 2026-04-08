@@ -24,7 +24,10 @@
   },
   "mixins": [
     "ama-carpet.mixins.json",
-    "ama-carpet.client.mixins.json"
+    {
+      "config": "ama-carpet.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "accessWidener": "ama-carpet.accesswidener",
   "depends": {

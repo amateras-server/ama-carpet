@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
+
 package org.amateras_smp.amacarpet.mixins;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -14,7 +18,7 @@ public class EnderDragonMixin {
         method = "tickDeath",
         at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/boss/enderdragon/EnderDragon;dragonDeathTime:I", ordinal = 6, opcode = Opcodes.GETFIELD)
     )
-    private int bringBackDeadDragonXpFarm(int original) {
+    private int bringBackDeadDragon(int original) {
         if (!AmaCarpetSettings.antiDeadDragonFix) return original;
         return original == 200 ? original : 0;
     }

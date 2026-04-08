@@ -1,0 +1,31 @@
+// Copyright (c) 2026 Amateras-Server
+// This file is part of the AmaCarpet project and is licensed under the terms of
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
+
+package org.amateras_smp.amacarpet.logging.loggers;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import org.amateras_smp.amacarpet.utils.TextUtil;
+
+public class EntityCounterLogger extends AbstractHUDLogger {
+    private static final String kName = "entityCounter";
+    private static final boolean kStrictOptions = false;
+
+    private static final EntityCounterLogger kInstance = new EntityCounterLogger(kName, kStrictOptions);
+
+    public static EntityCounterLogger getInstance() {
+        return kInstance;
+    }
+
+    public EntityCounterLogger(String name, boolean strictOptions) {
+        super(name, strictOptions);
+    }
+
+    @Override
+    public Component[] onHudUpdate(String option, Player player) {
+        return new Component[]{TextUtil.withFormat(String.format("ENTITY_COUNTER: %d", Entity.ENTITY_COUNTER.get()), ChatFormatting.BLUE)};
+    }
+}
