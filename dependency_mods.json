@@ -4,5 +4,6 @@
   "litematica": "litematica_version",
   "malilib": "malilib_version",
   "syncmatica": "syncmatica_version",
-  "tweakeroo": "tweakeroo_version"
+  "tweakeroo": "tweakeroo_version",
+  "server-replay": "server_replay_version"
 }

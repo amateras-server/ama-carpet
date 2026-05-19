@@ -22,6 +22,9 @@ repositories {
   maven {
     url = 'https://maven.fallenbreath.me/releases'
   }
+  maven{
+    url = "https://maven.supersanta.me/snapshots"
+  }
 }
 
 // https://github.com/FabricMC/fabric-loader/issues/783
@@ -55,12 +58,19 @@ dependencies {
     autoImplementation "maven.modrinth:carpet:${project.carpet_version}"
   }
 
+  if (mcVersion >= 1_21_08) {
+    include(autoImplementation("net.casualchampionships:arcade-replay:${project.arcade_replay_version}"))
+  } else {
+    autoImplementation "maven.modrinth:server-replay:${project.server_replay_version}"
+  }
+
   // autoImplementation "maven.modrinth:amatweaks:${project.amatweaks_version}"
   autoImplementation "maven.modrinth:litematica:${project.litematica_version}"
   autoImplementation "maven.modrinth:malilib:${project.malilib_version}"
   autoImplementation "maven.modrinth:syncmatica:${project.syncmatica_version}"
   // autoImplementation "maven.modrinth:tweakermore:${project.tweakermore_version}"
-  autoImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}"
+  autoImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}";
+
 }
 
 JavaVersion JAVA_COMPATIBILITY
