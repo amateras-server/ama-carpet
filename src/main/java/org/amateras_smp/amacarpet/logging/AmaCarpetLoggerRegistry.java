@@ -19,12 +19,12 @@ public class AmaCarpetLoggerRegistry {
     public static boolean __replay;
 
     public static void registerLoggers() {
-        // register(EntityCounterLogger.getInstance());
-        register(ReplayLogger.getInstance());
+        // register(EntityCounterLogger.getInstance(), null, null);
+        register(ReplayLogger.getInstance(), ReplayLogger.defaultOption(), ReplayLogger.options());
     }
 
-    private static void register(AbstractHUDLogger logger) {
-        LoggerRegistry.registerLogger(logger.getName(), standardHUDLogger(logger.getName(), "name", new String[]{"name,range,dim", "name", "range", "dim"}, logger.strictOptions()));
+    private static void register(AbstractHUDLogger logger, String defaultOption, String[] options) {
+        LoggerRegistry.registerLogger(logger.getName(), standardHUDLogger(logger.getName(), defaultOption, options, logger.strictOptions()));
     }
 
     public static Field getLoggerField(String logName) {
