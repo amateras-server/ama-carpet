@@ -1,0 +1,1 @@
+net.minecraft.resources.Identifier toShortString() net.minecraft.resources.Identifier toShortLanguageKey()

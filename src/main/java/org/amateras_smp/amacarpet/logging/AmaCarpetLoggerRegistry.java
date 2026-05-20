@@ -9,19 +9,22 @@ import carpet.logging.HUDLogger;
 import net.minecraft.server.MinecraftServer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.logging.loggers.AbstractHUDLogger;
-import org.amateras_smp.amacarpet.logging.loggers.EntityCounterLogger;
+// import org.amateras_smp.amacarpet.logging.loggers.EntityCounterLogger;
+import org.amateras_smp.amacarpet.logging.loggers.ReplayLogger;
 
 import java.lang.reflect.Field;
 
 public class AmaCarpetLoggerRegistry {
     // public static boolean __entityCounter;
+    public static boolean __replay;
 
     public static void registerLoggers() {
         // register(EntityCounterLogger.getInstance());
+        register(ReplayLogger.getInstance());
     }
 
     private static void register(AbstractHUDLogger logger) {
-        LoggerRegistry.registerLogger(logger.getName(), standardHUDLogger(logger.getName(), null, null, logger.strictOptions()));
+        LoggerRegistry.registerLogger(logger.getName(), standardHUDLogger(logger.getName(), "name", new String[]{"name,range,dim", "name", "range", "dim"}, logger.strictOptions()));
     }
 
     public static Field getLoggerField(String logName) {
@@ -38,6 +41,7 @@ public class AmaCarpetLoggerRegistry {
 
     public static void updateHUD(MinecraftServer server) {
         // doHudLogging(__entityCounter, EntityCounterLogger.getInstance());
+        doHudLogging(__replay, ReplayLogger.getInstance());
     }
 
     private static void doHudLogging(boolean condition, AbstractHUDLogger logger) {

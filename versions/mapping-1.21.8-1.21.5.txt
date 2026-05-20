@@ -1,0 +1,4 @@
+net.casual.arcade.replay.recorder.ReplayRecorder me.senseiwells.replay.recorder.ReplayRecorder
+net.casual.arcade.replay.recorder.chunk.ReplayChunkRecorder me.senseiwells.replay.recorder.chunk.ChunkRecorder
+net.casual.arcade.replay.recorder.chunk.ReplayChunkRecorders me.senseiwells.replay.recorder.chunk.ChunkRecorders
+net.casual.arcade.replay.recorder.player.ReplayPlayerRecorders me.senseiwells.replay.recorder.player.PlayerRecorders

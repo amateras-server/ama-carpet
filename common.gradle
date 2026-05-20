@@ -64,6 +64,10 @@ dependencies {
     autoImplementation "maven.modrinth:server-replay:${project.server_replay_version}"
   }
 
+  if (mcVersion <= 1_21_05) {
+    autoCompileOnly 'org.jetbrains.kotlin:kotlin-stdlib:1.9.22'
+  }
+
   // autoImplementation "maven.modrinth:amatweaks:${project.amatweaks_version}"
   autoImplementation "maven.modrinth:litematica:${project.litematica_version}"
   autoImplementation "maven.modrinth:malilib:${project.malilib_version}"
