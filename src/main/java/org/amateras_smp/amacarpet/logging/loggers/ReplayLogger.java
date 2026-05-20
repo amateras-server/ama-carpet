@@ -7,9 +7,12 @@ package org.amateras_smp.amacarpet.logging.loggers;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import org.amateras_smp.amacarpet.utils.TextUtil;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import java.util.List;
 import net.casual.arcade.replay.recorder.ReplayRecorder;
 import net.casual.arcade.replay.recorder.chunk.ReplayChunkRecorder;
 import net.casual.arcade.replay.recorder.chunk.ReplayChunkRecorders;
+import net.casual.arcade.replay.recorder.player.ReplayPlayerRecorder;
 import net.casual.arcade.replay.recorder.player.ReplayPlayerRecorders;
 
 public class ReplayLogger extends AbstractHUDLogger {
@@ -85,10 +89,10 @@ public class ReplayLogger extends AbstractHUDLogger {
 
     private static class ServerReplayStatusManager {
         private static Component[] currentStatus(ElementsOption elements) {
-            String players = getStatusFor(/* "Players", */ ReplayPlayerRecorders.recorders(), elements);
-            String chunks = getStatusFor(/* "Chunks", */ ReplayChunkRecorders.recorders(), elements);
-            String savingPlayers = getStatusFor(/* "Saving (Players)", */ ReplayPlayerRecorders.closing(), elements);
-            String savingChunks = getStatusFor(/* "Saving (Chunks)", */ ReplayChunkRecorders.closing(), elements);
+            String players = getStatusForPlayers("Players: ", ReplayPlayerRecorders.recorders(), elements.name);
+            String chunks = getStatusForChunks(/* "Chunks", */ "", ReplayChunkRecorders.recorders(), elements);
+            String savingPlayers = getStatusForPlayers("Saving (Players): ", ReplayPlayerRecorders.closing(), elements.name);
+            String savingChunks = getStatusForChunks("Saving (Chunks): ", ReplayChunkRecorders.closing(), elements);
 
             List<Component> result = new ArrayList<>();
             if (!players.isBlank()) {
@@ -111,6 +115,66 @@ public class ReplayLogger extends AbstractHUDLogger {
             return result.toArray(new Component[0]);
         }
 
+        private static String getStatusForPlayers(String prefix, Collection<ReplayPlayerRecorder> recorders, boolean name) {
+            if (!name || recorders.isEmpty()) {
+                return "";
+            }
+            StringBuilder builder = new StringBuilder(prefix);
+            for (ReplayPlayerRecorder recorder : recorders) {
+                builder.append(String.format("%s, ", recorder.getName()));
+            }
+            // Remove trailing comma and space.
+            builder.delete(builder.length() - 2, builder.length());
+
+            return builder.toString();
+        }
+
+        private static String getStatusForChunks(String prefix, Collection<ReplayChunkRecorder> recorders, ElementsOption elements) {
+            if (recorders.isEmpty()) {
+                return "";
+            }
+            // StringBuilder builder = new StringBuilder(String.format("%s: [", type));
+            StringBuilder builder = new StringBuilder(prefix);
+
+            for (ReplayChunkRecorder recorder : recorders) {
+                if (elements.name) {
+                    builder.append(String.format("\"%s\"", recorder.getName()));
+                }
+                // final String kAllFormat = ": [%d, %d]..[%d, %d] of %s";
+                if (elements.area || elements.dim) {
+                    if (elements.name) {
+                        builder.append(":");
+                    }
+                    if (elements.area) {
+                        ChunkPos from = recorder.getChunks().getFrom();
+                        ChunkPos to = recorder.getChunks().getTo();
+                        final String kRangeFormat = " [(%d, %d) .. (%d, %d)]";
+                        //#if MC >= 260000
+                        builder.append(String.format(kRangeFormat, from.x(), from.z(), to.x(), to.z()));
+                        //#else
+                        //$$ builder.append(String.format(kRangeFormat, from.x, from.z, to.x, to.z));
+                        //#endif
+                    }
+                    if (elements.dim) {
+                        ResourceKey<Level> dim = recorder.getLevel().dimension();
+                        String dimStr = dim.identifier().toShortString();
+                        if (dim == ServerLevel.OVERWORLD) {
+                            dimStr = "ow";
+                        } else if (dim == ServerLevel.NETHER) {
+                            dimStr = "ne";
+                        }
+                        builder.append(String.format(" in %s", dimStr));
+                    }
+                }
+                builder.append(", ");
+            }
+            // Remove trailing comma and space.
+            builder.delete(builder.length() - 2, builder.length());
+            // builder.append("]");
+
+            return builder.toString();
+        }
+
         private static String getStatusFor(/* String type, */ Collection<? extends ReplayRecorder> recorders, ElementsOption elements) {
             if (recorders.isEmpty()) {
                 return "";
@@ -121,19 +185,17 @@ public class ReplayLogger extends AbstractHUDLogger {
             for (ReplayRecorder recorder : recorders) {
                 if (elements.name) {
                     builder.append(String.format("\"%s\"", recorder.getName()));
-                    if (elements.area || elements.dim) {
-                        builder.append(":");
-                    }
                 }
                 if (recorder instanceof ReplayChunkRecorder chunkRecorder) {
-                    String dimension = chunkRecorder.getLevel().dimension().identifier().toShortString();
-
                     // final String kAllFormat = ": [%d, %d]..[%d, %d] of %s";
                     if (elements.area || elements.dim) {
+                        if (elements.name) {
+                            builder.append(":");
+                        }
                         if (elements.area) {
                             ChunkPos from = chunkRecorder.getChunks().getFrom();
                             ChunkPos to = chunkRecorder.getChunks().getTo();
-                            final String kRangeFormat = " [%d, %d] .. [%d, %d]";
+                            final String kRangeFormat = " [(%d, %d) .. (%d, %d)]";
                             //#if MC >= 260000
                             builder.append(String.format(kRangeFormat, from.x(), from.z(), to.x(), to.z()));
                             //#else
@@ -141,7 +203,14 @@ public class ReplayLogger extends AbstractHUDLogger {
                             //#endif
                         }
                         if (elements.dim) {
-                            builder.append(String.format(" in %s", dimension));
+                            ResourceKey<Level> dim = chunkRecorder.getLevel().dimension();
+                            String dimStr = dim.identifier().toShortString();
+                            if (dim == ServerLevel.OVERWORLD) {
+                                dimStr = "ow";
+                            } else if (dim == ServerLevel.NETHER) {
+                                dimStr = "ne";
+                            }
+                            builder.append(String.format(" in %s", dimStr));
                         }
                     }
                 }
