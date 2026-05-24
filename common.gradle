@@ -59,7 +59,7 @@ dependencies {
   }
 
   if (mcVersion >= 1_21_08) {
-    include(autoImplementation("net.casualchampionships:arcade-replay:${project.arcade_replay_version}"))
+    autoImplementation "net.casualchampionships:arcade-replay:${project.arcade_replay_version}"
   } else {
     autoImplementation "maven.modrinth:server-replay:${project.server_replay_version}"
   }
